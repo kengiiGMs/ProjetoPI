@@ -1,0 +1,58 @@
+:root {
+    --red-primary: #f80000
+}
+
+.center {
+    text-align: center;
+}
+
+.login-background {
+    background-color: white;
+    border-radius: 16px;
+}
+
+.input-login {
+    border: none;
+
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+.button-login {
+    margin-top: 4rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.linkEsqueciMinhaSenha {
+    color: var(--red-primary);
+}
+
+.containerEsqueciMinhaSenha {
+    padding-bottom: 3rem;
+    margin: 0.5rem 0;
+}
+
+#bodyLogin {
+    background-color: rgb(255, 240, 245);
+}
+
+.containerLogin {
+    margin-top: 10%;
+}
+
+.h1Login {
+    margin-top: 90px;
+    margin-bottom: 60px;
+}
+
+.container1 {
+    max-width: 70%;
+}
+
+.input-login:focus {
+    box-shadow: none;
+    border-color: var(--red-primary);
+}
