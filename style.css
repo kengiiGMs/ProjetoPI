@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&family=Roboto:wght@300;400&display=swap");
+
+:root {
+  --red-primary: #f80000;
+}
+
+* {
+  font-family: "Roboto";
+  margin: 0;
+  padding: 0;
+  padding-left: 0;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--red-primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Header */
+
+.navbar {
+  background-color: var(--red-primary);
+  border-radius: 50px;
+  position: fixed;
+  width: 98.5%;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 10% auto auto auto;
+  align-items: center;
+  box-shadow: 0px 10px 3px #d9d9d9;
+  font-weight: 400;
+}
+
+.logo {
+  display: flex;
+  max-width: 80px;
+  max-height: 80px;
+  margin-right: 200px;
+  margin-left: 15%;
+  justify-content: center;
+}
+
+.inputSearch {
+  background-color: transparent;
+  width: 300px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  padding: 1%;
+  align-items: center;
+  margin-right: ;
+  background-image: url(Assets/iconSearch.svg);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+}
+
+.inputSearch:hover {
+  transform: scale(1.1);
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+.inputSearch::-webkit-input-placeholder {
+  color: white;
+  font-size: 14px;
+}
+
+.iconsLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+}
+
+.nav-link:hover{
+  transform: scale(1.2);
+}
+
+.iconsLinks a i {
+  color: white;
+  font-size: 230%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconsLinks p {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  margin: 0;
+}
+
+
+.login {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  padding: 5%;
+  white-space: nowrap;
+  height: 50px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 5px;
+  outline: none;
+  
+}
+
+.login a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.login:hover {
+  transform: scale(1.1);
+}
