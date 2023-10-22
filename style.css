@@ -58,8 +58,7 @@
   color: white;
   padding: 1%;
   align-items: center;
-  margin-right: ;
-  background-image: url(Assets/iconSearch.svg);
+  background-image: url(Assets/icons/iconSearch.svg);
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) center;
 }
@@ -87,7 +86,7 @@ input[type="search"]::-webkit-search-results-decoration {
   gap: 20%;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   transform: scale(1.2);
 }
 
@@ -106,7 +105,6 @@ input[type="search"]::-webkit-search-results-decoration {
   margin: 0;
 }
 
-
 .login {
   display: flex;
   justify-content: center;
@@ -118,7 +116,6 @@ input[type="search"]::-webkit-search-results-decoration {
   border: 2px solid white;
   border-radius: 5px;
   outline: none;
-  
 }
 
 .login a {
@@ -129,4 +126,42 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .login:hover {
   transform: scale(1.1);
+}
+
+/* Main */
+
+main {
+  margin: 4%;
+}
+
+/* Carousel */
+
+.carousel {
+  box-shadow: 5px 10px 3px #d9d9d9;
+}
+
+.carousel-item img {
+  height: 35vw;
+  width: 60vw;
+  border-radius: 3px;
+}
+
+/* announcement */
+
+.ads img {
+  width: 100%;
+  box-shadow: 3px 10px 3px #d9d9d9;
+  border-radius: 3px;
+}
+
+.ads:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
+.col-4 {
+  max-height: 30vw;
+}
+.col-4 .row {
+  padding: 3%;
 }

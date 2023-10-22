@@ -17,40 +17,133 @@
     />
   </head>
   <body>
-
-
-
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="Assets/LogoToca.svg" alt="" class="logo">
-          
+          <img src="Assets/LogoToca.svg" alt="" class="logo" />
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Alternar navegação"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto iconsLinks">
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-house-door-fill"></i> Início</a>
+              <a class="nav-link" href="#"
+                ><i class="bi bi-house-door-fill"></i> Início</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-postage"></i> Camisas</a>
+              <a class="nav-link" href="#"
+                ><i class="bi bi-postage"></i> Camisas</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-cart-fill"></i> Carrinho</a>
+              <a class="nav-link" href="#"
+                ><i class="bi bi-cart-fill"></i> Carrinho</a
+              >
             </li>
           </ul>
-          <form class="d-flex me-auto justify-content-center ">
-            <input class="inputSearch" type="search" placeholder="Pesquisar" aria-label="Search"> 
+          <form class="d-flex me-auto justify-content-center">
+            <input
+              class="inputSearch"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+            />
           </form>
           <div class="d-flex justify-content-center align-items-center">
-            <button class="login"><a href="Pages/login/login.html">Fazer Login</a></button>
+            <button class="login">
+              <a href="Pages/login/login.html">Fazer Login</a>
+            </button>
           </div>
         </div>
       </div>
     </nav>
+
+    <main>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-8">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a href="">
+                    <img
+                      src="Assets/carousel/itadori.png"
+                      class="d-block carousel-img"
+                      alt="..."
+                  /></a>
+                </div>
+                <div class="carousel-item">
+                  <a href="">
+                    <img
+                      src="Assets/carousel/luffy.png"
+                      class="d-block carousel-img"
+                      alt="..."
+                  /></a>
+                </div>
+                <div class="carousel-item">
+                  <a href="">
+                    <img
+                      src="Assets/carousel/sasuke.jpg"
+                      class="d-block carousel-img"
+                      alt="..."
+                  /></a>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleFade"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Próximo</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleFade"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="row ads">
+              <div class="ads">
+                <a href="">
+                  <img src="Assets/adverts/marin.jpeg" alt="" />
+                </a>
+              </div>
+            </div>
+            <div class="row ads">
+              <div class="ads">
+                <a href="">
+                  <img src="Assets/adverts/hinata.jpg" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <script
       src="https://kit.fontawesome.com/caf43e9267.js"
