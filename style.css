@@ -150,7 +150,7 @@ main {
 
 .ads img {
   width: 100%;
-  box-shadow: 3px 10px 3px #d9d9d9;
+  box-shadow: 3px 5px 3px #d9d9d9;
   border-radius: 3px;
 }
 
@@ -163,5 +163,52 @@ main {
   max-height: 30vw;
 }
 .col-4 .row {
-  padding: 3%;
+  padding: 4%;
+}
+
+.divider{
+  width: 100%;
+  border: 1px solid #fc7d7dad;
+  margin: 5% 0% 5% 0%;
+}
+
+/* Categories */
+
+.categories{
+  width: 100%;
+  background-color: var(--red-primary);
+  height: 7vw;
+  box-shadow: 3px 10px 3px #d9d9d9;
+  border-radius: 5px;
+  display: flex;
+  align-content: center;
+  /* padding: 3% 3% 3% 12.5%; */
+
+}
+
+.categoriesLogo{
+  width: 30%;
+  height: 100%;
+  color: white;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+
+.categoriesLogo:hover{
+  transform: scale(1.3);
+}
+
+.categories .col-2{
+  height: 7vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.categoriesLogo img{
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
