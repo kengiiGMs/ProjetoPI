@@ -7,15 +7,21 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="criarLogin.css">
 </head>
 
 <body id="bodyLogin">
     <div class="container containerLogin">
         <div class="row login-background">
             <div class="col-6">
+
+                <img src="" alt="">
+
+            </div>
+
+            <div class="col">
                 <div class="container container1">
-                    <h1 class="center h1Login">Login</h1>
+                    <h1 class="center h1Login">Criar Login</h1>
                     <form>
 
                         <div class="form-floating mb-3">
@@ -24,25 +30,33 @@
                             <label for="floatingInput">Digite o seu Email</label>
                         </div>
 
-                        <div class="form-floating">
+                        <div class="form-floating  mb-3">
                             <input type="password" class="form-control input-login" id="floatingPassword"
                                 placeholder="Password">
                             <label for="floatingPassword">Digite a sua Senha</label>
                         </div>
 
+                        <div class="form-floating  mb-3">
+                            <input type="password" class="form-control input-login" id="confirmFloatingPassword"
+                                placeholder="Password">
+                            <label for="floatingPassword">Confirme a sua Senha</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="text" class="form-control input-login" id="floatingCelular"
+                                placeholder="celular">
+                            <label for="celular">Digite o seu Celular</label>
+                        </div>
+
                         <div class="d-grid gap-2 button-login">
-                            <button type="button" class="btn btn-danger">Entrar</button>
+                            <button type="button" class="btn btn-danger">Criar Login</button>
                         </div>
 
                     </form>
                     <div class="container center containerEsqueciMinhaSenha">
-                        <a href="../criarLogin/criarLogin.html" class="linkEsqueciMinhaSenha">Criar a Conta</a>
+                        <a href="../login/login.html" class="linkEsqueciMinhaSenha">Criar a Conta</a>
                     </div>
                 </div>
-            </div>
-
-            <div class="col">
-                <img src="" alt="">
             </div>
         </div>
     </div>
