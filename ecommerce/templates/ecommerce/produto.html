@@ -1,0 +1,115 @@
+{% extends 'ecommerce/layout.html' %}
+{% load static %}
+
+{% block title %}A Toca Dos Animes{% endblock %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'ecommerce/styles.css' %}"> {% endblock %}
+
+{% block body %}    
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active ratio ratio-16x9">
+                                <img src="{{produto.img_url}}" class="w-100 img-fluid" alt="...">
+                            </div>
+                            <div class="carousel-item ratio ratio-16x9">
+                                <img src="{{produto.img_url}}" class="w-100 img-fluid" alt="...">
+                            </div>
+                            <div class="carousel-item ratio ratio-16x9">
+                                <img src="{{produto.img_url}}" class="w-100 img-fluid" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <h1>{{produto.nome_produto}}</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"> <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="col">
+                            <p>5.0 (280 Avaliações)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h2>R$ {{produto.valor_produto}}</h2>
+                    </div>
+                    <div class="row">
+                        <p>Tamanho</p>
+                        <div class="container">
+                            <form action="">
+                                <input type="radio" class="btn-check d-flex" name="options-base" id="option5"
+                                    autocomplete="off" checked>
+                                <label class="btn" for="option5">P</label>
+
+                                <input type="radio" class="btn-check" name="options-base" id="option6"
+                                    autocomplete="off">
+                                <label class="btn" for="option6">M</label>
+
+                                <input type="radio" class="btn-check" name="options-base" id="option7"
+                                    autocomplete="off">
+                                <label class="btn" for="option7">G</label>
+
+                                <input type="radio" class="btn-check" name="options-base" id="option8"
+                                    autocomplete="off">
+                                <label class="btn" for="option8">GG</label>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <label for="exampleInputQuantity" class="form-label">Quantidade</label>
+                        <input type="number" class="form-control d-flex" id="inputQuantity" min="1" max="10">
+                    </div>
+                    <div class="row">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-danger" type="submit">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="row">
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div style="margin:20px">
+                        <p>{{produto.descricao_produto}}</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </main>
+{% endblock %}   

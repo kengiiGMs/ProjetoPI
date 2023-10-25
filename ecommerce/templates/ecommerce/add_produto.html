@@ -1,0 +1,50 @@
+{% extends 'ecommerce/layout.html' %}
+{% load static %}
+{% block title %}Adicionar Produto{% endblock %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'ecommerce/styles.css' %}"> {% endblock %}
+
+{% block body %}
+    <div style="margin: 20px;">
+        <h1>Adicionar Produto</h1>
+        {% if message %}
+            <h3 style="color: green;">{{message}}</h3>
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="nome_produto">Nome do Produto:</label>
+                <div>
+                    <input type="text" name="nome_produto" id="nome_produto">
+                </div>
+
+            <label for="quantidade_produto">Quantidade do Produto:</label>
+                <div>
+                    <input type="text" name="quantidade_produto" id="quantidade_produto">
+                </div>
+
+            <label for="tamanho_produto">Tamanho do Produto:</label>
+                <div>
+                    <input type="text" name="tamanho_produto" id="tamanho_produto">
+                </div>
+
+            <label for="descricao_produto">Descrição do Produto:</label>
+                <div>
+                    <textarea name="descricao_produto" id="descricao_produto" cols="40" rows="5">
+
+                    </textarea>
+                </div>
+
+            <label for="valor_produto">Valor do Produto:</label>
+                <div>
+                    <input type="number" name="valor_produto" id="valor_produto" min="0" value="0" step=".01" required>
+                </div>
+
+            <label for="url_produto">Imagem do Produto:</label>
+                <div>
+                    <input type="url" name="url_produto" id="url_produto">
+                </div>
+            <br>
+            <input type="submit" value="Adicionar" style="padding: 2px 5px 2px 5px;">
+        </form>
+    </div>
+{% endblock %}
