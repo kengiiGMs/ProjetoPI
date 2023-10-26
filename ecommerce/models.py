@@ -13,18 +13,15 @@ class User(AbstractUser):
 
 
 class Produto(models.Model):
-    TAMANHO_CHOICES = [
-        ("P", "Pequeno"),
-        ("M", "Médio"),
-        ("G", "Grande"),
-        ("GG", "Extra Grande"),
-    ]
     nome_produto = models.CharField(max_length=255)
     quantidade_produto = models.IntegerField()
-    tamanho_produto = models.CharField(max_length=2, choices=TAMANHO_CHOICES)
     descricao_produto = models.TextField()
     valor_produto = models.DecimalField(max_digits=6, decimal_places=2)
     img_url = models.URLField()
+    tamanho_p = models.IntegerField(max_length=3, blank=False, null=True)
+    tamanho_m = models.IntegerField(max_length=1, blank=False, null=True)
+    tamanho_g = models.IntegerField(max_length=1, blank=False, null=True)
+    tamanho_gg = models.IntegerField(max_length=2, blank=False, null=True)
 
     def __str__(self):
         return self.nome_produto
