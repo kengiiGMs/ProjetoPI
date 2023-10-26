@@ -11,7 +11,13 @@ from .models import User, Pedido, Produto, ItemPedido, Endereco
 def index(request):
     produtos = Produto.objects.all()
     return render(request, "ecommerce/index.html", context={
-        "produtos": produtos[2:7]
+        "produtos": produtos[:5]
+    })
+
+def produtos(request):
+    produtos = Produto.objects.all()
+    return render(request, "ecommerce/produtos.html", context={
+        "produtos": produtos
     })
 
 @login_required

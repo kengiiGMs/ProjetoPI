@@ -327,7 +327,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 390px;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
 }
