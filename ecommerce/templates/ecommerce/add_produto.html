@@ -10,19 +10,14 @@
         {% if message %}
             <h3 style="color: green;">{{message}}</h3>
         {% endif %}
-        <form action="" method="POST">
+        <form action="{% url 'add_produto' %}" method="POST">
             {% csrf_token %}
             <label for="nome_produto">Nome do Produto:</label>
                 <div>
                     <input type="text" name="nome_produto" id="nome_produto">
                 </div>
 
-            <label for="quantidade_produto">Quantidade do Produto:</label>
-                <div>
-                    <input type="text" name="quantidade_produto" id="quantidade_produto">
-                </div>
-
-            <label for="tamanho_produto">Tamanhos:</label>
+            <label for="tamanho_produto">Quantidade dos Tamanhos:</label>
                 <div class="space">
                     <input type="number" name="tamanho_p" id="tamanho_p" placeholder="P" min="0">
                 </div>

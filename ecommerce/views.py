@@ -25,16 +25,20 @@ def add_produto(request):
     if request.user.is_superuser or request.user.adm:
         if request.method == "POST":
             nome = request.POST["nome_produto"]
-            quantidade = request.POST["quantidade_produto"]
-            tamanho = request.POST["tamanho_produto"]
+            p = request.POST["tamanho_p"]
+            m = request.POST["tamanho_m"]
+            g = request.POST["tamanho_g"]
+            gg = request.POST["tamanho_gg"]
             descricao = request.POST["descricao_produto"]
             valor = request.POST["valor_produto"]
             url = request.POST["url_produto"]
 
             produto = Produto.objects.create(
                 nome_produto=nome,
-                quantidade_produto=quantidade,
-                tamanho_produto=tamanho.upper(),
+                tamanho_p=p,
+                tamanho_m=m,
+                tamanho_g=g,
+                tamanho_gg=gg,
                 descricao_produto=descricao,
                 valor_produto=valor,
                 img_url=url,
