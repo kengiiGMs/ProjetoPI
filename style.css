@@ -31,7 +31,6 @@
 .navbar {
   background-color: var(--red-primary);
   border-radius: 50px;
-  width: 98.5%;
   margin: 10px;
   display: grid;
   grid-template-columns: 10% auto auto auto;
@@ -57,7 +56,7 @@
   border-radius: 5px;
   outline: none;
   color: white;
-  padding: 1%;
+  padding: 5%;
   align-items: center;
   background-image: url(Assets/icons/iconSearch.svg);
   background-repeat: no-repeat;
@@ -93,7 +92,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .iconsLinks a i {
   color: white;
-  font-size: 230%;
+  font-size: 200%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,16 +106,12 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .login {
-  display: flex;
-  justify-content: center;
-  width: 150px;
-  padding: 5%;
-  white-space: nowrap;
-  height: 50px;
-  background-color: transparent;
-  border: 2px solid white;
-  border-radius: 5px;
-  outline: none;
+    width: 120px;
+    height: 45px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-right: 40px;
 }
 
 .login a {
@@ -233,7 +228,7 @@ main {
   height: 65%;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1200px) {
   
   .categories{
     height: 10vw;
@@ -262,44 +257,6 @@ main {
     height: 65%;
   }
 
-}
-
-@media screen and (max-width: 500px) {
-  .categories{
-    height: 15vw;
-  }
-
-  .categories .col-2{
-    height: 15vw;
-  }
-
-  .categoriesLogo{
-    width: 70%;
-  }
-
-  .categoriesLogo:hover{
-    background-color: none;
-    border-radius: 0;
-  }
-
-  .jkLogo{
-    width: 65px;
-    height: 65%;
-  }
-
-  .nrtLogo{
-    width: 45px;
-    height: 65%;
-  }
-
-  .opLogo{
-    width: 40px;
-    height: 65%;
-  }
-
-  .aotLogo{
-    width: 25px;
-  }
 }
 
 .showMore{
@@ -378,16 +335,19 @@ footer .redeSocial{
 
 footer .redeSocial h4{
   font-weight: 900;
-  margin-right: 20%;
-  white-space: nowrap;
+  margin: 0 0 0 10px;
 }
 
 footer img{
-  width: 50px;
+  width: 45px;
+}
+
+footer .redeSocial a{
+  width: 40px;
 }
 
 footer img:hover{
-  width: 55px;
+  width: 50px;
 }
 
 .dividerFooter{
