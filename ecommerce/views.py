@@ -1,42 +1,48 @@
+from .models import User, Pedido, Produto, ItemPedido, Endereco
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.db import IntegrityError
 from django.shortcuts import render
 from django.urls import reverse
-from .models import User, Pedido, Produto, ItemPedido, Endereco
+from django.db.models import Q
 
 # Create your views here.
 
+
 def index(request):
     produtos = Produto.objects.all()
-    return render(request, "ecommerce/index.html", context={
-        "produtos": produtos[:5]
-    })
+    return render(request, "ecommerce/index.html", context={"produtos": produtos[:5]})
+
 
 def search_bar(request):
     if request.method == "GET":
-        produtos = Produto.objects.all()
-        user_input = request.GET["search"].strip()
-        
-        search_products = []
-        for produto in produtos:
-            formatted_input = f"{produto.nome_produto.title()}, {produto.nome_produto.upper()}, {produto.nome_produto.lower()}, {produto.nome_produto.swapcase()}"
-            if user_input in formatted_input:
-                search_products.append(produto)
+        # produtos = Produto.objects.all()
+        user_input = request.GET.get("search", "")
 
-        return render(request, "ecommerce/search_bar.html", context={
-            "produtos": search_products,
-            "user_input": user_input,
-        })
-    
+        search_products = Produto.objects.filter(
+            Q(nome_produto__icontains=user_input)| 
+            Q(nome_produto__iexact=user_input)| 
+            Q(nome_produto__istartswith=user_input)| 
+            Q(nome_produto__iendswith=user_input)
+        )
+
+        return render(
+            request,
+            "ecommerce/search_bar.html",
+            context={
+                "produtos": search_products,
+                "user_input": user_input,
+            },
+        )
+
     return HttpResponseRedirect(reverse("index"))
+
 
 def produtos(request):
     produtos = Produto.objects.all()
-    return render(request, "ecommerce/produtos.html", context={
-        "produtos": produtos
-    })
+    return render(request, "ecommerce/produtos.html", context={"produtos": produtos})
+
 
 @login_required
 def add_produto(request):
@@ -70,11 +76,17 @@ def add_produto(request):
     else:
         return HttpResponseRedirect(reverse("index"))
 
+
 def produto_page(request, produto_pk):
     produto = Produto.objects.get(pk=produto_pk)
-    return render(request, "ecommerce/produto.html", context={
-        "produto": produto,
-    })
+    return render(
+        request,
+        "ecommerce/produto.html",
+        context={
+            "produto": produto,
+        },
+    )
+
 
 @login_required
 def commands(request):
@@ -83,7 +95,9 @@ def commands(request):
     else:
         return HttpResponseRedirect(reverse("index"))
 
+
 # USER AUTHENTICATION !
+
 
 def login_view(request):
     if request.method == "POST":
@@ -95,9 +109,11 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "ecommerce/login.html", context={
-                "message": "E-mail ou senha incorretos."
-            })
+            return render(
+                request,
+                "ecommerce/login.html",
+                context={"message": "E-mail ou senha incorretos."},
+            )
 
     return render(request, "ecommerce/login.html")
 
@@ -105,6 +121,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
 
 def register(request):
     if request.method == "POST":
@@ -114,20 +131,22 @@ def register(request):
         confirmation = request.POST["confirmation"]
 
         if password != confirmation:
-            return render(request, "ecommerce/register.html", context={
-                "message", "Passwords must match."
-            })
-        
+            return render(
+                request,
+                "ecommerce/register.html",
+                context={"message", "Passwords must match."},
+            )
+
         try:
             user = User.objects.create_user(email, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "ecommerce/register.html", context={
-                "message": "Esse endereço de email já está em uso."
-            })
+            return render(
+                request,
+                "ecommerce/register.html",
+                context={"message": "Esse endereço de email já está em uso."},
+            )
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "ecommerce/register.html")
-
-        
