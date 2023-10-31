@@ -9,6 +9,7 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("commands", views.commands, name="commands"),
     path("produtos", views.produtos, name="produtos"),
+    path("search_bar", views.search_bar, name="search_bar"),
     path("add_produto", views.add_produto, name="add_produto"),
     path("produto/<int:produto_pk>", views.produto_page, name="produto_page")
 ]

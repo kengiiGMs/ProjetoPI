@@ -14,6 +14,23 @@ def index(request):
         "produtos": produtos[:5]
     })
 
+def search_bar(request):
+    if request.method == "GET":
+        produtos = Produto.objects.all()
+        user_input = request.GET["search"].strip()
+        
+        search_products = []
+        for produto in produtos:
+            formatted_input = f"{produto.nome_produto.title()}, {produto.nome_produto.upper()}, {produto.nome_produto.lower()}, {produto.nome_produto.swapcase()}"
+            if user_input in formatted_input:
+                search_products.append(produto)
+
+        return render(request, "ecommerce/search_bar.html", context={
+            "produtos": search_products,
+            "user_input": user_input,
+        })
+    return HttpResponseRedirect(reverse("index"))
+
 def produtos(request):
     produtos = Produto.objects.all()
     return render(request, "ecommerce/produtos.html", context={
@@ -82,7 +99,6 @@ def login_view(request):
             return render(request, "ecommerce/login.html", context={
                 "message": "E-mail ou senha incorretos."
             })
-
 
     return render(request, "ecommerce/login.html")
 
