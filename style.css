@@ -177,7 +177,6 @@ main {
 .categories{
   width: 100%;
   background-color: var(--red-primary);
-  height: 7vw;
   box-shadow: 3px 10px 3px #d9d9d9;
   border-radius: 5px;
   display: flex;
@@ -228,52 +227,6 @@ main {
   height: 65%;
 }
 
-@media screen and (max-width: 1200px) {
-  
-  .categories{
-    height: 10vw;
-  }
-
-  .categories .col-2{
-    height: 10vw;
-  }
-
-  .categoriesLogo:hover{
-    padding: 0;
-  }
-
-  .jkLogo{
-    width: 100px;
-    height: 65%;
-  }
-
-  .nrtLogo{
-    width: 70px;
-    height: 65%;
-  }
-
-  .opLogo{
-    width: 60px;
-    height: 65%;
-  }
-
-}
-
-.showMore{
-  margin-top: 2%;
-  font-size: 18px;
-  color: var(--red-primary);
-  font-weight: 900;
-  width: 30px;
-  white-space: nowrap;
-}
-
-.showMore:hover{
-  cursor: pointer;
-  font-size: 20px;
-}
-
-
 /* Products cards */
 
 .cardsProduct .row{
@@ -310,27 +263,20 @@ main {
 /* Footer */
 
 footer{
-  width: 100%;
-  height: 25vw;
   background-color: var(--red-primary);
   padding: 3%;
-  /* display: flex;
-  justify-content: center; */
-  align-items: center;
   border-radius: 4px;
 }
 
 footer .redeSocial{
   width: 50%;
-  height: 19%;
   margin-left: 25%;
   display: flex;
-  gap: 20px;
+  gap: 15px;
   align-items: center;
   justify-content: center;
   background-color: white;
   border-radius: 5px;
-  
 }
 
 footer .redeSocial h4{
@@ -340,10 +286,6 @@ footer .redeSocial h4{
 
 footer img{
   width: 45px;
-}
-
-footer .redeSocial a{
-  width: 40px;
 }
 
 footer img:hover{
@@ -366,5 +308,91 @@ footer img:hover{
   text-align: left;
 }
 
+@media screen and (max-width: 1200px) {
+  
+  .categories .col-2{
+    height: 10vw;
+  }
 
+  .categoriesLogo:hover{
+    padding: 0;
+  }
 
+  .jkLogo{
+    width: 15vw;
+    height: 65%;
+  }
+
+  .nrtLogo{
+    width: 12vw;
+    height: 65%;
+  }
+
+  .opLogo{
+    width: 7.5vw;
+    height: 65%;
+  }
+
+  .aotLogo{
+    width: 5vw;
+    height: 65%;
+  }
+
+  footer{
+    height: 100%;
+    border-radius: 0%;
+  }
+
+  footer .redeSocial{
+    width: 100%;
+    margin: 0;
+    display: block;
+    text-align: center;
+  }
+
+  footer a {
+    text-decoration: none !important;
+  }
+
+  .cardsProduct .row{
+    overflow: unset;
+    display: flex;
+    flex-direction: column;
+    max-height: unset;
+  }
+
+  .cardProduct{
+    width: 100%;
+  }
+
+  .shirt{
+    width: 50% !important;
+  }
+
+  .login{
+    margin: 10px;
+  }
+
+  .inputSearch{
+    margin: 10px;
+  }
+
+  .navbar-toggler{
+    margin: 5%;
+  }
+
+  .footerInfo{
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .footer-item{
+    margin: 5% 0 5% 0;
+    width: 100% !important;
+  }
+
+  .footerInfo a {
+    display: block;
+    text-align: center;
+  }
+}
