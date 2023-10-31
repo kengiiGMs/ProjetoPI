@@ -29,6 +29,7 @@ def search_bar(request):
             "produtos": search_products,
             "user_input": user_input,
         })
+    
     return HttpResponseRedirect(reverse("index"))
 
 def produtos(request):
@@ -72,7 +73,7 @@ def add_produto(request):
 def produto_page(request, produto_pk):
     produto = Produto.objects.get(pk=produto_pk)
     return render(request, "ecommerce/produto.html", context={
-        "produto": produto
+        "produto": produto,
     })
 
 @login_required
@@ -81,8 +82,6 @@ def commands(request):
         return render(request, "ecommerce/commands.html")
     else:
         return HttpResponseRedirect(reverse("index"))
-
-
 
 # USER AUTHENTICATION !
 
