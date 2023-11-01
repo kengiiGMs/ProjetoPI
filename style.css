@@ -83,7 +83,7 @@ input[type="search"]::-webkit-search-results-decoration {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20%;
+  gap: 10%;
 }
 
 .nav-link:hover {
@@ -387,12 +387,25 @@ footer img:hover{
   }
 
   .footer-item{
-    margin: 5% 0 5% 0;
+    margin-bottom: 2%;
     width: 100% !important;
+    max-height: unset;
   }
 
   .footerInfo a {
     display: block;
     text-align: center;
+  }
+
+  .logo{
+    margin-right: 80px;
+  }
+
+  footer{
+    padding-bottom: 0;
+  }
+
+  .navbar-toggler{
+    display: block;
   }
 }
