@@ -7,6 +7,9 @@
 
 * {
   font-family: "Roboto";
+  margin: 0;
+  padding: 0;
+  padding-left: 0;
 }
 
 ::-webkit-scrollbar {
@@ -28,7 +31,6 @@
 .navbar {
   background-color: var(--red-primary);
   border-radius: 50px;
-  width: 98.5%;
   margin: 10px;
   display: grid;
   grid-template-columns: 10% auto auto auto;
@@ -54,7 +56,7 @@
   border-radius: 5px;
   outline: none;
   color: white;
-  padding: 1%;
+  padding: 5%;
   align-items: center;
   background-image: url(Assets/icons/iconSearch.svg);
   background-repeat: no-repeat;
@@ -81,11 +83,7 @@ input[type="search"]::-webkit-search-results-decoration {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20%;
-}
-
-.nav-link{
-  color: white;
+  gap: 10%;
 }
 
 .nav-link:hover {
@@ -94,7 +92,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .iconsLinks a i {
   color: white;
-  font-size: 230%;
+  font-size: 200%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,16 +106,12 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .login {
-  display: flex;
-  justify-content: center;
-  width: 150px;
-  padding: 5%;
-  white-space: nowrap;
-  height: 50px;
-  background-color: transparent;
-  border: 2px solid white;
-  border-radius: 5px;
-  outline: none;
+    width: 120px;
+    height: 45px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-right: 40px;
 }
 
 .login a {
@@ -183,7 +177,6 @@ main {
 .categories{
   width: 100%;
   background-color: var(--red-primary);
-  height: 7vw;
   box-shadow: 3px 10px 3px #d9d9d9;
   border-radius: 5px;
   display: flex;
@@ -234,99 +227,15 @@ main {
   height: 65%;
 }
 
-@media screen and (max-width: 700px) {
-  
-  .categories{
-    height: 10vw;
-  }
-
-  .categories .col-2{
-    height: 10vw;
-  }
-
-  .categoriesLogo:hover{
-    padding: 0;
-  }
-
-  .jkLogo{
-    width: 100px;
-    height: 65%;
-  }
-
-  .nrtLogo{
-    width: 70px;
-    height: 65%;
-  }
-
-  .opLogo{
-    width: 60px;
-    height: 65%;
-  }
-
-}
-
-@media screen and (max-width: 500px) {
-  .categories{
-    height: 15vw;
-  }
-
-  .categories .col-2{
-    height: 15vw;
-  }
-
-  .categoriesLogo{
-    width: 70%;
-  }
-
-  .categoriesLogo:hover{
-    background-color: none;
-    border-radius: 0;
-  }
-
-  .jkLogo{
-    width: 65px;
-    height: 65%;
-  }
-
-  .nrtLogo{
-    width: 45px;
-    height: 65%;
-  }
-
-  .opLogo{
-    width: 40px;
-    height: 65%;
-  }
-
-  .aotLogo{
-    width: 25px;
-  }
-}
-
-.showMore{
-  margin-top: 2%;
-  font-size: 18px;
-  color: var(--red-primary);
-  font-weight: 900;
-  width: 30px;
-  white-space: nowrap;
-}
-
-.showMore:hover{
-  cursor: pointer;
-  font-size: 20px;
-}
-
-
 /* Products cards */
 
 .cardsProduct .row{
   display: flex;
   justify-content: center;
   align-items: center;
+  max-height: 390px;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
-  padding: 70px 50px 0px 50px;
 }
 
 
@@ -354,42 +263,33 @@ main {
 /* Footer */
 
 footer{
-  width: 100%;
-  height: 25vw;
   background-color: var(--red-primary);
   padding: 3%;
-  align-items: center;
   border-radius: 4px;
 }
 
 footer .redeSocial{
   width: 50%;
-  height: 19%;
   margin-left: 25%;
   display: flex;
-  gap: 20px;
+  gap: 15px;
   align-items: center;
   justify-content: center;
   background-color: white;
   border-radius: 5px;
-  
 }
 
 footer .redeSocial h4{
   font-weight: 900;
-  margin-right: 20%;
-  white-space: nowrap;
-  display: inline-block;
-  margin: 0;
-  /* margin-bottom: -1em; */
+  margin: 0 0 0 10px;
 }
 
 footer img{
-  width: 50px;
+  width: 45px;
 }
 
 footer img:hover{
-  width: 55px;
+  width: 50px;
 }
 
 .dividerFooter{
@@ -408,69 +308,224 @@ footer img:hover{
   text-align: left;
 }
 
-.space {
-  margin-bottom: 5px;
+@media screen and (max-width: 1200px) {
+  
+  .categories .col-2{
+    height: 10vw;
+  }
+
+  .categoriesLogo:hover{
+    padding: 0;
+  }
+
+  .jkLogo{
+    width: 15vw;
+    height: 65%;
+  }
+
+  .nrtLogo{
+    width: 12vw;
+    height: 65%;
+  }
+
+  .opLogo{
+    width: 7.5vw;
+    height: 65%;
+  }
+
+  .aotLogo{
+    width: 5vw;
+    height: 65%;
+  }
+
+  footer{
+    height: 100%;
+    border-radius: 0%;
+  }
+
+  footer .redeSocial{
+    width: 100%;
+    margin: 0;
+    display: block;
+    text-align: center;
+  }
+
+  footer a {
+    text-decoration: none !important;
+  }
+
+  .cardsProduct .row{
+    overflow: unset;
+    display: flex;
+    flex-direction: column;
+    max-height: unset;
+  }
+
+  .cardProduct{
+    width: 100%;
+  }
+
+  .shirt{
+    width: 50% !important;
+  }
+
+  .login{
+    margin: 10px;
+  }
+
+  .inputSearch{
+    margin: 10px;
+  }
+
+  .navbar-toggler{
+    margin: 5%;
+  }
+
+  .footerInfo{
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .footer-item{
+    margin-bottom: 2%;
+    width: 100% !important;
+    max-height: unset;
+  }
+
+  .footerInfo a {
+    display: block;
+    text-align: center;
+  }
+
+  .logo{
+    margin-right: 80px;
+  }
+
+  footer{
+    padding-bottom: 0;
+  }
+
+  .navbar-toggler{
+    display: block;
+  }
 }
+
+
+/* offCanvas Cart */
+
+/* card shirt */
+
+.cardShirt{
+  max-width: 100%;
+  height: 20vh;
+  border: 2px solid var(--red-primary);
+  display: grid;
+  grid-template-columns: 40% 50% 10%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.cardShirt img{
+  height: 12%;
+
+}
+
+.cardShirt h5{
+  white-space: nowrap;
+  padding: 2%;
+  margin: 0;
+}
+
+.cardShirt p{
+  padding: 2%;
+  margin: 0;
+}
+
+.shirtInfos{
+  padding-top: 15%;
+  text-align: start;
+}
+
+
+.cardShirt button{
+  margin-top: 280%;
+  height: 3%;
+  width: 100%;
+  padding: 0;
+}
+
+#subTotal{
+  text-align: center;
+}
+
+.showCart{
+  width: 100%;
+  text-align: center; 
+  justify-content: center;
+}
+
+
 
 /* Auth */
 
 :root {
-    --red-primary: #f80000
+  --red-primary: #f80000
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .login-background {
-    background-color: white;
-    border-radius: 16px;
-    padding: 50px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 50px;
 }
 
 .input-login {
-    border: none;
-    border-bottom: 1px solid black;
-    border-radius: 0;
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 0;
 }
 
 .button-login {
-    margin-top: 4rem;
+  margin-top: 4rem;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .linkEsqueciMinhaSenha {
-    color: var(--red-primary);
+  color: var(--red-primary);
 }
 
 .containerEsqueciMinhaSenha {
-    padding-bottom: 3rem;
-    margin: 0.5rem 0;
+  padding-bottom: 3rem;
+  margin: 0.5rem 0;
 }
 
 .cont {
-    background-color: rgb(255, 240, 245);
+  background-color: rgb(255, 240, 245);
 }
 
 
 .h1Login {
-    /* margin-top: 60px; */
-    margin-bottom: 60px;
+  /* margin-top: 60px; */
+  margin-bottom: 60px;
 }
 
 .container1 {
-    max-width: 70%;
+  max-width: 70%;
 }
 
 .input-login:focus {
-    box-shadow: none;
-    border-color: var(--red-primary);
+  box-shadow: none;
+  border-color: var(--red-primary);
 }
 
-/* Search Bar */
+
+  /* Search Bar */
 
 .search-bar .row{
   display: flex;

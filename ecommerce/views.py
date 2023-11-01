@@ -16,10 +16,11 @@ def index(request):
 def search_bar(request):
     if request.method == "GET":
         produtos = Produto.objects.all()
-        user_input = request.GET.get("search", "")
+        user_input = request.GET.get("search", "").lower().strip()
         search_products = []
         for produto in produtos:
-            formatted_input = f"{produto.nome_produto.title()}, {produto.nome_produto.upper()}, {produto.nome_produto.lower()}, {produto.nome_produto.swapcase()}"
+            formatted_input = f"{produto.nome_produto.title()}{produto.nome_produto.upper()}{produto.nome_produto.lower()}{produto.nome_produto.swapcase()}"
+            print(formatted_input)
             if user_input in formatted_input:
                 search_products.append(produto)
 
@@ -87,7 +88,6 @@ def commands(request):
 
 
 # USER AUTHENTICATION !
-
 
 def login_view(request):
     if request.method == "POST":
