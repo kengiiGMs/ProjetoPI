@@ -409,3 +409,57 @@ footer img:hover{
     display: block;
   }
 }
+
+
+/* offCanvas Cart */
+
+  /* card shirt */
+
+  .cardShirt{
+    max-width: 100%;
+    height: 20vh;
+    border: 2px solid var(--red-primary);
+    display: grid;
+    grid-template-columns: 40% 50% 10%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  .cardShirt img{
+    height: 12%;
+
+  }
+
+  .cardShirt h5{
+    white-space: nowrap;
+    padding: 2%;
+    margin: 0;
+  }
+
+  .cardShirt p{
+    padding: 2%;
+    margin: 0;
+  }
+
+  .shirtInfos{
+    padding-top: 15%;
+    text-align: start;
+  }
+
+
+  .cardShirt button{
+    margin-top: 280%;
+    height: 3%;
+    width: 100%;
+    padding: 0;
+  }
+
+  #subTotal{
+    text-align: center;
+  }
+
+  .showCart{
+    width: 100%;
+    text-align: center; 
+    justify-content: center;
+  }

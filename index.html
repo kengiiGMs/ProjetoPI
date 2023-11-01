@@ -1,252 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toca dos Animes</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Toca dos Animes</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-</head>
-
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="Assets/LogoToca.svg" alt="" class="logo" />
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto iconsLinks">
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-house-door-fill"></i>Início</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-postage"></i>
-                <div>Camisetas</div>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-cart-fill"></i>Carrinho</a>
-            </li>
-          </ul>
-          <form class="d-flex me-auto justify-content-center">
-            <input class="inputSearch" type="search" placeholder="Pesquisar" aria-label="Search" />
-          </form>
-          <div class="d-flex justify-content-center align-items-center">
-            <button class="login">
-              <a href="Pages/login/login.html">Entrar</a>
-            </button>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="Assets/LogoToca.svg" alt="" class="logo" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Alternar navegação"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto iconsLinks">
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><i class="bi bi-house-door-fill"></i>Início</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><i class="bi bi-postage"></i>
+                  <div>Camisetas</div>
+                </a>
+              </li>
+              <li
+                class="nav-item"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight"
+              >
+                <a class="nav-link" href="#"
+                  ><i class="bi bi-cart-fill"></i>Carrinho</a
+                >
+              </li>
+            </ul>
+            <form class="d-flex me-auto justify-content-center">
+              <input
+                class="inputSearch"
+                type="search"
+                placeholder="Pesquisar"
+                aria-label="Search"
+              />
+            </form>
+            <div class="d-flex justify-content-center align-items-center">
+              <button class="login">
+                <a href="Pages/login/login.html">Entrar</a>
+              </button>
+            </div>
           </div>
         </div>
+      </nav>
+    </header>
+
+    <!-- Carrinho  -->
+
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrinho</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
       </div>
-    </nav>
-  </header>
+      <div class="offcanvas-body">
+        <!-- card de produtos no carrinho -->
+        <div class="row">
+          <div class="cardShirt">
+            <div class="">
+              <img src="Assets/shirts/camisaOnePiece.webp" alt="" srcset="" />
+            </div>
+            <div class="shirtInfos">
+              <div class="row">
+                <h5>Camiseta One Piece</h5>
+              </div>
+              <div class="row">
+                <p>Valor : R$ 49,99</p>
+              </div>
+              <div class="row">
+                <p>Quantidade : 4</p>
+              </div>
+            </div>
+            
+              <button class="btn btn-outline-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cardShirt">
+            <div class="">
+              <img src="Assets/shirts/camisaOnePiece.webp" alt="" srcset="" />
+            </div>
+              <div class="shirtInfos">
+                <div class="row">
+                  <h5>Camiseta One Piece</h5>
+                </div>
+                <div class="row">
+                  <p>Valor : R$ 49,99</p>
+                </div>
+                <div class="row">
+                  <p>Quantidade : 4</p>
+              </div>
+            </div>
+            <button class="btn btn-outline-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
 
-  <main>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-8">
-          <div id="carouselExampleFade" class="carousel slide carousel-fade">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <a href="">
-                  <img src="Assets/carousel/itadori.png" class="d-block carousel-img" alt="..." /></a>
-              </div>
-              <div class="carousel-item">
-                <a href="">
-                  <img src="Assets/carousel/luffy.png" class="d-block carousel-img" alt="..." /></a>
-              </div>
-              <div class="carousel-item">
-                <a href="">
-                  <img src="Assets/carousel/sasuke.jpg" class="d-block carousel-img" alt="..." /></a>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-              data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Próximo</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-              data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Anterior</span>
-            </button>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="row ads">
-            <div class="ads">
-              <a href="">
-                <img src="Assets/adverts/marin.jpeg" alt="" />
-              </a>
-            </div>
-          </div>
-          <div class="row ads">
-            <div class="ads">
-              <a href="">
-                <img src="Assets/adverts/hinata.jpg" alt="" />
-              </a>
-            </div>
-          </div>
-        </div>
+        <h5 id="subTotal">Subtotal: R$ 399,99</h5>
+
+        <a href="carrinho.html" class="btn btn-outline-danger showCart" >Ver Carrinho</a>
+
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="categories">
+    <main>
       <div class="container-fluid">
-        <form action="">
-          <div class="row">
-            <div class="col-2" style="padding-left: 0"></div>
-            <div class="col-2">
-              <a href="">
-                <img src="Assets/categories/narutoLogo.svg" alt="" class="categoriesLogo nrtLogo" />
-              </a>
-            </div>
-            <div class="col-2">
-              <a href="">
-                <img src="Assets/categories/onePieceLogo.svg" alt="" class="categoriesLogo opLogo" />
-              </a>
-            </div>
-            <div class="col-2">
-              <a href="">
-                <img src="Assets/categories/aotLogo.svg" alt="" class="categoriesLogo aotLogo" />
-              </a>
-            </div>
-            <div class="col-2">
-              <a href="">
-                <img src="Assets/categories/jujutsuLogo.svg" alt="" class="categoriesLogo jkLogo" />
-              </a>
-            </div>
-            <div class="col-2"></div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <br />
-
-    <div class="container-fluid cardsProduct">
-      <div class="row" style="gap: 20px">
-        <div class="col-2 shirt">
-          <div class="cardProduct">
-            <img src="Assets/shirts/camisaOnePiece.webp" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              <h5 class="card-title">Camisa de One Piece</h5>
-              <br />
-              <p class="card-text">R$: 49.99</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2 shirt">
-          <div class="cardProduct">
-            <img src="Assets/shirts/camisaOnePiece.webp" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              <h5 class="card-title">Camisa de One Piece</h5>
-              <br />
-              <p class="card-text">R$: 49.99</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2 shirt">
-          <div class="cardProduct">
-            <img src="Assets/shirts/camisaOnePiece.webp" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              <h5 class="card-title">Camisa de One Piece</h5>
-              <br />
-              <p class="card-text">R$: 49.99</p>
+        <div class="row">
+          <div class="col-8">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a href="">
+                    <img
+                      src="Assets/carousel/itadori.png"
+                      class="d-block carousel-img"
+                      alt="..."
+                  /></a>
+                </div>
+                <div class="carousel-item">
+                  <a href="">
+                    <img
+                      src="Assets/carousel/luffy.png"
+                      class="d-block carousel-img"
+                      alt="..."
+                  /></a>
+                </div>
+                <div class="carousel-item">
+                  <a href="">
+                    <img
+                      src="Assets/carousel/sasuke.jpg"
+                      class="d-block carousel-img"
+                      alt="..."
+                  /></a>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleFade"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Próximo</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleFade"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
             </div>
           </div>
-        </div>
-        <div class="col-2 shirt">
-          <div class="cardProduct">
-            <img src="Assets/shirts/camisaOnePiece.webp" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              <h5 class="card-title">Camisa de One Piece</h5>
-              <br />
-              <p class="card-text">R$: 49.99</p>
+          <div class="col-4">
+            <div class="row ads">
+              <div class="ads">
+                <a href="">
+                  <img src="Assets/adverts/marin.jpeg" alt="" />
+                </a>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-2 shirt">
-          <div class="cardProduct">
-            <img src="Assets/shirts/camisaOnePiece.webp" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              <h5 class="card-title">Camisa de One Piece</h5>
-              <br />
-              <p class="card-text">R$: 49.99</p>
+            <div class="row ads">
+              <div class="ads">
+                <a href="">
+                  <img src="Assets/adverts/hinata.jpg" alt="" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="divider"></div>
-  </main>
+      <div class="divider"></div>
 
-  <footer>
-    <div class="redeSocial">
-      <h4>Conecte-se com as nossas redes sociais!</h4>
-      <a href="" target="_blank">
-        <img src="Assets/icons/iconTwitter.svg" alt="" srcset="" />
-      </a>
-      <a href="" target="_blank">
-        <img src="Assets/icons/iconFacebook.svg" alt="" srcset="" />
-      </a>
-      <a href="" target="_blank">
-        <img src="Assets/icons/iconInstagram.svg" alt="" srcset="" />
-      </a>
-    </div>
-    <div class="dividerFooter"></div>
+      <div class="categories">
+        <div class="container-fluid">
+          <form action="">
+            <div class="row">
+              <div class="col-2" style="padding-left: 0"></div>
+              <div class="col-2">
+                <a href="">
+                  <img
+                    src="Assets/categories/narutoLogo.svg"
+                    alt=""
+                    class="categoriesLogo nrtLogo"
+                  />
+                </a>
+              </div>
+              <div class="col-2">
+                <a href="">
+                  <img
+                    src="Assets/categories/onePieceLogo.svg"
+                    alt=""
+                    class="categoriesLogo opLogo"
+                  />
+                </a>
+              </div>
+              <div class="col-2">
+                <a href="">
+                  <img
+                    src="Assets/categories/aotLogo.svg"
+                    alt=""
+                    class="categoriesLogo aotLogo"
+                  />
+                </a>
+              </div>
+              <div class="col-2">
+                <a href="">
+                  <img
+                    src="Assets/categories/jujutsuLogo.svg"
+                    alt=""
+                    class="categoriesLogo jkLogo"
+                  />
+                </a>
+              </div>
+              <div class="col-2"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br />
 
-    <div class="row footerInfo">
-      <div class="col-4 footer-item">
-        <a href="">
-          <h3>Produtos</h3>
+      <div class="container-fluid cardsProduct">
+        <div class="row" style="gap: 20px">
+          <div class="col-2 shirt">
+            <div class="cardProduct">
+              <img
+                src="Assets/shirts/camisaOnePiece.webp"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i>
+                <h5 class="card-title">Camisa de One Piece</h5>
+                <br />
+                <p class="card-text">R$: 49.99</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-2 shirt">
+            <div class="cardProduct">
+              <img
+                src="Assets/shirts/camisaOnePiece.webp"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i>
+                <h5 class="card-title">Camisa de One Piece</h5>
+                <br />
+                <p class="card-text">R$: 49.99</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-2 shirt">
+            <div class="cardProduct">
+              <img
+                src="Assets/shirts/camisaOnePiece.webp"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i>
+                <h5 class="card-title">Camisa de One Piece</h5>
+                <br />
+                <p class="card-text">R$: 49.99</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-2 shirt">
+            <div class="cardProduct">
+              <img
+                src="Assets/shirts/camisaOnePiece.webp"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i>
+                <h5 class="card-title">Camisa de One Piece</h5>
+                <br />
+                <p class="card-text">R$: 49.99</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-2 shirt">
+            <div class="cardProduct">
+              <img
+                src="Assets/shirts/camisaOnePiece.webp"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i>
+                <h5 class="card-title">Camisa de One Piece</h5>
+                <br />
+                <p class="card-text">R$: 49.99</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </main>
+
+    <footer>
+      <div class="redeSocial">
+        <h4>Conecte-se com as nossas redes sociais!</h4>
+        <a href="" target="_blank">
+          <img src="Assets/icons/iconTwitter.svg" alt="" srcset="" />
         </a>
-        <a href="">One Piece</a>
-        <a href="">Jujutsu Kaisen</a>
-        <a href="">Naruto</a>
-        <a href="">Atack on Titan</a>
-      </div>
-      <div class="col-4 footer-item">
-        <a href="">
-          <h3>Sobre</h3>
+        <a href="" target="_blank">
+          <img src="Assets/icons/iconFacebook.svg" alt="" srcset="" />
         </a>
-        <a href="">Quem Somos</a>
-        <a href="">Formas de Pagamento</a>
-      </div>
-      <div class="col-4 footer-item">
-        <a href="">
-          <h3>Contatos</h3>
+        <a href="" target="_blank">
+          <img src="Assets/icons/iconInstagram.svg" alt="" srcset="" />
         </a>
-        <a href=""><i class="bi bi-envelope-fill"></i> &nbsp;atocadosanimes@gmail.com</a>
-        <a href=""><i class="bi bi-telephone-fill"></i> &nbsp;11 91845-0101</a>
       </div>
-    </div>
-  </footer>
+      <div class="dividerFooter"></div>
 
-  <script src="https://kit.fontawesome.com/676ab0158a.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-</body>
+      <div class="row footerInfo">
+        <div class="col-4 footer-item">
+          <a href="">
+            <h3>Produtos</h3>
+          </a>
+          <a href="">One Piece</a>
+          <a href="">Jujutsu Kaisen</a>
+          <a href="">Naruto</a>
+          <a href="">Atack on Titan</a>
+        </div>
+        <div class="col-4 footer-item">
+          <a href="">
+            <h3>Sobre</h3>
+          </a>
+          <a href="">Quem Somos</a>
+          <a href="">Formas de Pagamento</a>
+        </div>
+        <div class="col-4 footer-item">
+          <a href="">
+            <h3>Contatos</h3>
+          </a>
+          <a href=""
+            ><i class="bi bi-envelope-fill"></i>
+            &nbsp;atocadosanimes@gmail.com</a
+          >
+          <a href=""
+            ><i class="bi bi-telephone-fill"></i> &nbsp;11 91845-0101</a
+          >
+        </div>
+      </div>
+    </footer>
 
+    <script
+      src="https://kit.fontawesome.com/676ab0158a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
