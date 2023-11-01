@@ -326,6 +326,7 @@ main {
   align-items: center;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
+  padding: 70px 50px 0px 50px;
 }
 
 
@@ -357,8 +358,6 @@ footer{
   height: 25vw;
   background-color: var(--red-primary);
   padding: 3%;
-  /* display: flex;
-  justify-content: center; */
   align-items: center;
   border-radius: 4px;
 }
@@ -380,6 +379,9 @@ footer .redeSocial h4{
   font-weight: 900;
   margin-right: 20%;
   white-space: nowrap;
+  display: inline-block;
+  margin: 0;
+  /* margin-bottom: -1em; */
 }
 
 footer img{
@@ -453,9 +455,6 @@ a {
     background-color: rgb(255, 240, 245);
 }
 
-/* .containerLogin {
-    margin-top: 10%;
-} */
 
 .h1Login {
     /* margin-top: 60px; */
@@ -469,4 +468,30 @@ a {
 .input-login:focus {
     box-shadow: none;
     border-color: var(--red-primary);
+}
+
+/* Search Bar */
+
+.search-bar .row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  padding: 0px 50px 0px 50px;
+}
+
+/* Products Page */
+
+.products-page{
+  padding: 100px 100px 0px 100px;
+}
+
+.products-page .row{
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.products-page .row .col{
+  margin-bottom: 30px;
 }
