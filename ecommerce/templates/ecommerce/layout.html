@@ -19,55 +19,55 @@
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="{% url 'index' %}">
-                        <img src="{% static 'ecommerce/Assets/LogoToca.svg' %}" alt="" class="logo" />
+                        <img  src="{% static 'ecommerce/Assets/LogoToca.svg' %}" alt="" class="logo" />
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav me-auto iconsLinks">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'index' %}" style="color: white;"><i class="bi bi-house-door-fill"></i> Início</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'produtos' %}" style="color: white;"><i class="bi bi-postage"></i> Camisas</a>
-                            </li>
-                            <li class="nav-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                                <a class="nav-link" href="#" style="color: white;"><i class="bi bi-cart-fill"></i> Carrinho</a>
-                            </li>
-                        </ul>
+                        <!-- <div class="d-flex me-auto justify-content-center"> -->
+                            <ul class="navbar-nav me-auto iconsLinks">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'index' %}" style="color: white;"><i class="bi bi-house-door-fill"></i> Início</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'produtos' %}" style="color: white;"><i class="bi bi-postage"></i> Camisas</a>
+                                </li>
+                                <li class="nav-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <a class="nav-link" href="#" style="color: white;"><i class="bi bi-cart-fill"></i> Carrinho</a>
+                                </li>
+                            </ul>
+                        <!-- </div> -->
                         <form class="d-flex me-auto justify-content-center" action="{% url 'search_bar' %}" method="get">
                             {% csrf_token %}
                             <input class="inputSearch" type="search" placeholder="Pesquisar" aria-label="Search" name="search"/>
                         </form>
                         {% if user.is_authenticated %}
-                            {% if user.is_superuser or user.adm %}
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <a href="{% url 'commands' %}" style="color: inherit; text-decoration: none;"><strong style="color: white; margin-right: 30px;">{{user.username}}</strong></a>
-                                </div>
-                            {% else %}
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <strong style="color: white; margin-right: 30px;">{{user.username}}</strong>
-                                </div>
-                            {% endif %}
-                            <div class="d-flex justify-content-center align-items-center">
-                                <button class="login">
-                                    <a href="{% url 'logout' %}">Logout</a>
-                                </button>
+                            <!-- <div class="d-flex me-auto justify-content-center text-center"> -->
+                                <ul class="navbar-nav me-auto iconsLinks">
+                                    <li class="nav-item">
+                                        {% if user.is_superuser or user.adm %}
+                                            <a class="nav-link" href="{% url 'commands' %}" style="color: inherit; text-decoration: none;"><strong style="color: white;">{{request.user.username}}</strong></a>
+                                        {% else %}
+                                            <a  class="nav-link" href="" style="color: inherit; text-decoration: none;"><strong style="color: white;">{{request.user.username}}</strong></a>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            <!-- </div> -->
+                            <div class="d-flex justify-content-center">
+                                <a href="{% url 'logout' %}"><button class="login">Logout</button></a>
                             </div>
-        
                         {% else %}
-                            <div class="d-flex justify-content-center align-items-center">
-                                <button class="login">
-                                    <a href="{% url 'login' %}">Fazer Login</a>
-                                </button>
-                            </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{% url 'login' %}"><button class="login">Login</button></a>
+                                </div>
                         {% endif %}
                     </div>
                 </div>
             </nav>
         </header>
+
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">

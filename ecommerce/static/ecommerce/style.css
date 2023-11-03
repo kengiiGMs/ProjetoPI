@@ -39,6 +39,7 @@
   font-weight: 400;
 }
 
+
 .logo {
   display: flex;
   max-width: 80px;
@@ -46,6 +47,8 @@
   margin-right: 200px;
   margin-left: 15%;
   justify-content: center;
+  position: relative;
+  top: 3px;
 }
 
 .inputSearch {
@@ -112,12 +115,9 @@ input[type="search"]::-webkit-search-results-decoration {
     border: 2px solid white;
     border-radius: 5px;
     margin-right: 40px;
-}
-
-.login a {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 .login:hover {

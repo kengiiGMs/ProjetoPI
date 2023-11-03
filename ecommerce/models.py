@@ -4,7 +4,6 @@ from django.db import models
 # Create your models here.
 
 class User(AbstractUser):
-    nome = models.CharField(max_length=255, blank=False, null=True)
     cpf = models.CharField(max_length=11, blank=False, null=True)
     adm = models.BooleanField(default=False)
 

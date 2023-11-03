@@ -87,15 +87,13 @@
             </div>
         </div>
 
-        <!-- <h2 class="showMore" onclick="toggleCards()">Ver Mais</h2> -->
-
         <div class="container-fluid cardsProduct">
-            <div class="row" style="gap: 20px">
+            <div class="row" style="gap: 20px; padding: 30px;">
                 {% for produto in produtos %}
-                    <div class="col-2 shirt">
+                    <div class="col-2 shirt" style="">
                         <a href="{% url 'produto_page' produto.pk %}" style="color: inherit; text-decoration: none;">
                             <div class="cardProduct">
-                                <img src="{{produto.img_url}}" class="card-img-top" alt="..." />
+                                <img src="{{produto.img_url}}" class="card-img-top" alt="..."/>
                                 <div class="card-body">
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                         class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>

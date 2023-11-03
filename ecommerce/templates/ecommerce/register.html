@@ -23,27 +23,27 @@
                             {% csrf_token %}
     
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control input-login" id="floatingInput"
-                                    placeholder="name@example.com" name="email">
-                                <label for="floatingInput">Digite o seu Email</label>
+                                <input type="text" class="form-control input-login" id="floatingInput"
+                                    placeholder="Username" name="username" maxlength="16">
+                                <label for="floatingInput">Digite o seu Username</label>
+                            </div>
+    
+                            <div class="form-floating  mb-3">
+                                <input type="email" class="form-control input-login" id="floatingEmail"
+                                    placeholder="example@email.com" name="email">
+                                <label for="floatingEmail">Digite o seu Email</label>
                             </div>
     
                             <div class="form-floating  mb-3">
                                 <input type="password" class="form-control input-login" id="floatingPassword"
                                     placeholder="Password" name="password">
-                                <label for="floatingPassword">Digite a sua Senha</label>
-                            </div>
-    
-                            <div class="form-floating  mb-3">
-                                <input type="password" class="form-control input-login" id="confirmFloatingPassword"
-                                    placeholder="Password" name="confirmation">
-                                <label for="floatingPassword">Confirme a sua Senha</label>
+                                <label for="floatingPassword">Digite sua Senha</label>
                             </div>
     
                             <div class="form-floating">
-                                <input type="text" class="form-control input-login" id="floatingCelular"
-                                    placeholder="celular" name="celular">
-                                <label for="celular">Digite o seu Celular</label>
+                                <input type="password" class="form-control input-login" id="confirmFloatingPassword"
+                                    placeholder="Password" name="confirmation">
+                                <label for="confirmFloatingPassword">Confirme a sua Senha</label>
                             </div>
     
                             <div class="d-grid gap-2 button-login">

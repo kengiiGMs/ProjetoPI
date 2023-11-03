@@ -20,7 +20,6 @@ def search_bar(request):
         search_products = []
         for produto in produtos:
             formatted_input = f"{produto.nome_produto.title()}{produto.nome_produto.upper()}{produto.nome_produto.lower()}{produto.nome_produto.swapcase()}"
-            print(formatted_input)
             if user_input in formatted_input:
                 search_products.append(produto)
 
@@ -91,9 +90,10 @@ def commands(request):
 
 def login_view(request):
     if request.method == "POST":
-        email = request.POST.get("email")
+        email = request.POST.get("email").lower()
         password = request.POST.get("password")
-        user = authenticate(request, username=email, password=password)
+        request_username = User.objects.get(email=email).username
+        user = authenticate(request, username=request_username, password=password)
 
         if user is not None:
             login(request, user)
@@ -115,19 +115,18 @@ def logout_view(request):
 
 def register(request):
     if request.method == "POST":
-        email = request.POST.get("email")
+        username = request.POST.get("username")
+        email = request.POST.get("email").lower()
         password = request.POST.get("password")
         confirmation = request.POST.get("confirmation")
-
         if password != confirmation:
             return render(
                 request,
                 "ecommerce/register.html",
                 context={"message", "Passwords must match."},
             )
-
         try:
-            user = User.objects.create_user(email, email, password)
+            user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
             return render(
