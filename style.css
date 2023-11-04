@@ -556,10 +556,66 @@ footer img:hover{
     font-size: 20px;
   }
 
-  .btnPay{
+  .pagePay{
     display: flex;
     align-items: center;
     margin: 1% 0% 1% 25%;
+    width: 50%;
+    text-align: center;
+  }
+
+/* Pagamento */
+  .pay{
+    border: 1.8px solid var(--red-primary);
+    border-radius: 3px;
+    width: 35vw;
+    margin: 1% 0% 1% 30%;
+    height: 40vh;
+    padding: 3%;
+  }
+
+  .pay h5{
+    color: var(--red-primary);
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 0;
+  }
+
+  .payInput{
+    border: none;
+    outline: none;
+    margin-top: 10%;
+    border-bottom: 1px solid var(--red-primary);
+  }
+
+  .mounthPay{
+    width: 10%;
+    margin-right: 5%;
+  }
+
+  .yearPay{
+    width: 10%;
+    margin-right: 5%;
+  }
+
+  .namePayInput{
+    width: 60%;
+    margin-right: 5%;
+  }
+
+  .numberPayInput{
+    width: 60%;
+    margin-right: 5%;
+  }
+
+  .cvcPay{
+    width: 10%;
+  }
+
+  .btnPay{
+    display: flex;
+    align-items: center;
+    margin: 5% 0% 1% 23%;
     width: 50%;
     text-align: center;
   }
