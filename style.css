@@ -527,3 +527,39 @@ footer img:hover{
   margin-top: 2%;
   text-align: center;
 }
+
+  /* Dados de Entrega */
+
+  .detailsDelivery{
+    border: 2px solid var(--red-primary);
+      width: 90%;
+      margin-left: 5%;
+      height: 40vh;
+      border-radius: 3px;
+      padding: 4%;
+      margin-bottom: 1%;
+  }
+
+  .rowInput{
+    height: 10vh;
+  }
+
+  .inputDetailsDelivery{
+    border: none;
+    border-bottom: 2px solid var(--red-primary);
+    width: 20vw;
+    outline: none;
+    margin-right: 30px;
+  }
+
+  .inputDetailsDelivery::placeholder{
+    font-size: 20px;
+  }
+
+  .btnPay{
+    display: flex;
+    align-items: center;
+    margin: 1% 0% 1% 25%;
+    width: 50%;
+    text-align: center;
+  }
