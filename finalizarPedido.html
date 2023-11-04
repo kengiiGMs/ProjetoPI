@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="Assets/LogoToca.svg" alt="" class="logo" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto iconsLinks">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-house-door-fill"></i>Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="bi bi-postage"></i>
+                                <div>Camisetas</div>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                            aria-controls="offcanvasRight">
+                            <a class="nav-link" href="#"><i class="bi bi-cart-fill"></i>Carrinho</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex me-auto justify-content-center">
+                        <input class="inputSearch" type="search" placeholder="Pesquisar" aria-label="Search" />
+                    </form>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button class="login">
+                            <a href="Pages/login/login.html">Entrar</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrinho</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- card de produtos no carrinho -->
+            <div class="row">
+                <div class="cardShirt">
+                    <div class="">
+                        <img src="Assets/shirts/camisaOnePiece.webp" alt="" srcset="" />
+                    </div>
+                    <div class="shirtInfos">
+                        <div class="row">
+                            <h5>Camiseta One Piece</h5>
+                        </div>
+                        <div class="row">
+                            <p>Valor : R$ 49,99</p>
+                        </div>
+                        <div class="row">
+                            <p>Quantidade : 4</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cardShirt">
+                    <div class="">
+                        <img src="Assets/shirts/camisaOnePiece.webp" alt="" srcset="" />
+                    </div>
+                    <div class="shirtInfos">
+                        <div class="row">
+                            <h5>Camiseta One Piece</h5>
+                        </div>
+                        <div class="row">
+                            <p>Valor : R$ 49,99</p>
+                        </div>
+                        <div class="row">
+                            <p>Quantidade : 4</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <h5 id="subTotal">Subtotal: R$ 399,99</h5>
+
+            <a href="finalizarPedido.html" class="btn btn-outline-danger showCart">Finalizar Carrinho</a>
+        </div>
+    </div>
+
+
+    <h5 class="title_confirm">Confirmar Produtos</h5>
+    <div class="cardGroups">
+        <div class="rowCardGroups">
+            <div class="cardShirtConfirm">
+                <div class="row">
+                    <h5>Camisa de One Piece</h5>
+                </div>
+                <div class="row">
+                <div class="col-4" style="padding: 0;">
+                    <img src="Assets/shirts/opShirt.png" alt="">
+                </div>
+                <div class="col-8" style="padding: 0;">
+                    <div class="row">
+                        <p>Tamanho M</p>
+                    </div>
+                    <div class="row">
+                        <p>Quantidade : 4</p>
+                    </div>
+                    <div class="row">
+                        Preço: R$ 49,99
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-outline-danger">Remover</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="cardShirtConfirm">
+                <div class="row">
+                    <h5>Camisa de One Piece</h5>
+                </div>
+                <div class="row">
+                <div class="col-4" style="padding: 0;">
+                    <img src="Assets/shirts/opShirt.png" alt="">
+                </div>
+                <div class="col-8" style="padding: 0;">
+                    <div class="row">
+                        <p>Tamanho M</p>
+                    </div>
+                    <div class="row">
+                        <p>Quantidade : 4</p>
+                    </div>
+                    <div class="row">
+                        Preço: R$ 49,99
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-outline-danger">Remover</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="cardShirtConfirm">
+                <div class="row">
+                    <h5>Camisa de One Piece</h5>
+                </div>
+                <div class="row">
+                <div class="col-4" style="padding: 0;">
+                    <img src="Assets/shirts/opShirt.png" alt="">
+                </div>
+                <div class="col-8" style="padding: 0;">
+                    <div class="row">
+                        <p>Tamanho M</p>
+                    </div>
+                    <div class="row">
+                        <p>Quantidade : 4</p>
+                    </div>
+                    <div class="row">
+                        Preço: R$ 49,99
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-outline-danger">Remover</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="rowCardGroups">
+            <div class="cardShirtConfirm">
+                <div class="row">
+                    <h5>Camisa de One Piece</h5>
+                </div>
+                <div class="row">
+                <div class="col-4" style="padding: 0;">
+                    <img src="Assets/shirts/opShirt.png" alt="">
+                </div>
+                <div class="col-8" style="padding: 0;">
+                    <div class="row">
+                        <p>Tamanho M</p>
+                    </div>
+                    <div class="row">
+                        <p>Quantidade : 4</p>
+                    </div>
+                    <div class="row">
+                        Preço: R$ 49,99
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-outline-danger">Remover</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="cardShirtConfirm">
+                <div class="row">
+                    <h5>Camisa de One Piece</h5>
+                </div>
+                <div class="row">
+                <div class="col-4" style="padding: 0;">
+                    <img src="Assets/shirts/opShirt.png" alt="">
+                </div>
+                <div class="col-8" style="padding: 0;">
+                    <div class="row">
+                        <p>Tamanho M</p>
+                    </div>
+                    <div class="row">
+                        <p>Quantidade : 4</p>
+                    </div>
+                    <div class="row">
+                        Preço: R$ 49,99
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-outline-danger">Remover</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="cardShirtConfirm">
+                <div class="row">
+                    <h5>Camisa de One Piece</h5>
+                </div>
+                <div class="row">
+                <div class="col-4" style="padding: 0;">
+                    <img src="Assets/shirts/opShirt.png" alt="">
+                </div>
+                <div class="col-8" style="padding: 0;">
+                    <div class="row">
+                        <p>Tamanho M</p>
+                    </div>
+                    <div class="row">
+                        <p>Quantidade : 4</p>
+                    </div>
+                    <div class="row">
+                        Preço: R$ 49,99
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-outline-danger">Remover</button>
+                    </div>
+                </div>
+                </div>
+            </div>  
+        </div>
+    
+        <h5 class="subtotalConfirm">SubTotal: R$ 1199.76</h5>
+
+    </div>
+
+
+        
+    <footer>
+        <div class="redeSocial">
+            <h4>Conecte-se com as nossas redes sociais!</h4>
+            <a href="" target="_blank">
+                <img src="Assets/icons/iconTwitter.svg" alt="" srcset="" />
+            </a>
+            <a href="" target="_blank">
+                <img src="Assets/icons/iconFacebook.svg" alt="" srcset="" />
+            </a>
+            <a href="" target="_blank">
+                <img src="Assets/icons/iconInstagram.svg" alt="" srcset="" />
+            </a>
+        </div>
+        <div class="dividerFooter"></div>
+
+        <div class="row footerInfo">
+            <div class="col-4 footer-item">
+                <a href="">
+                    <h3>Produtos</h3>
+                </a>
+                <a href="">One Piece</a>
+                <a href="">Jujutsu Kaisen</a>
+                <a href="">Naruto</a>
+                <a href="">Atack on Titan</a>
+            </div>
+            <div class="col-4 footer-item">
+                <a href="">
+                    <h3>Sobre</h3>
+                </a>
+                <a href="">Quem Somos</a>
+                <a href="">Formas de Pagamento</a>
+            </div>
+            <div class="col-4 footer-item">
+                <a href="">
+                    <h3>Contatos</h3>
+                </a>
+                <a href=""><i class="bi bi-envelope-fill"></i>
+                    &nbsp;atocadosanimes@gmail.com</a>
+                <a href=""><i class="bi bi-telephone-fill"></i> &nbsp;11 91845-0101</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/676ab0158a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
