@@ -1,51 +1,54 @@
 {% extends 'ecommerce/layout.html' %}
 {% load static %}
 {% block body %}
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="box-element">
-
-				<a  class="btn btn-outline-dark" href="{% url 'index' %}">&#x2190; Continue Shopping</a>
-
-				<br>
-				<br>
-				<table class="table">
-					<tr>
-						<th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
-						<th><h5>Total:<strong> ${{order.get_cart_total|floatformat:2}}</strong></h5></th>
-						<th>
-							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'index' %}">Checkout</a>
-						</th>
-					</tr>
-				</table>
-
-			</div>
-
-			<br>
-			<div class="box-element">
-				<div class="cart-row">
-					<div style="flex:2"></div>
-					<div style="flex:2"><strong>Item</strong></div>
-					<div style="flex:1"><strong>Price</strong></div>
-					<div style="flex:1"><strong>Quantity</strong></div>
-					<div style="flex:1"><strong>Total</strong></div>
-				</div>
-				{% for pedido in carrinho %}
-				<div class="cart-row">
-					<div style="flex:2"><img class="row-image" src=""></div>
-					<div style="flex:2"><p>{{pedido.produto.nome_produto}}</p></div>
-					<div style="flex:1"><p>$ {{pedido.produto.valor_produto}}</p></div>
-					<div style="flex:1">
-						<p class="quantity">{{pedido.quantidade}}</p>
-						<div class="quantity">
-							<img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static 'Assets/arrow-up.png' %}">
-					
-							<img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static 'Assets/arrow-down.png' %}">
-						</div>
+	<div style="background-color: rgb(255, 240, 245);">
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="box-element">
+		
+						<a  class="btn btn-outline-dark" href="{% url 'index' %}">&#x2190; Volte às Compras</a>
+		
+						<br>
+						<br>
+						<table class="table">
+							<tr>
+								<th><h5>Items: <strong>{{pedido.get_total_items}}</strong></h5></th>
+								<th><h5>Total:<strong> R$ {{pedido.get_total_carrinho|floatformat:2}}</strong></h5></th>
+								<th>
+									<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Finalizar Pedido</a>
+								</th>
+							</tr>
+						</table>
+		
 					</div>
-					<div style="flex:1"><p>${{item.get_total|floatformat:2}}</p></div>
+		
+					<br>
+					<div class="box-element">
+						<div class="cart-row">
+							<div style="flex:2"></div>
+							<div style="flex:2"><strong>Produto</strong></div>
+							<div style="flex:1"><strong>Preço</strong></div>
+							<div style="flex:1"><strong class="text-center">Quantidade</strong></div>
+							<div style="flex:1"><strong class="text-center">Total</strong></div>
+						</div>
+						{% for item in carrinho %}
+						<div class="cart-row">
+							<div style="flex:2"><img class="row-image" src="{{item.produto.img_url}}"></div>
+							<div style="flex:2"><p>{{item.produto.nome_produto}}</p></div>
+							<div style="flex:1"><p>R$ {{item.produto.valor_produto}}</p></div>
+							<div style="flex:1" id="item_quantidade">
+								<div class="quantity" style="justify-content: center;">
+									<img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static 'ecommerce/Assets/arrow-up.png' %}">
+									<p class="quantity" style="justify-content: center;">{{item.quantidade}}</p>
+									<img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static 'ecommerce/Assets/arrow-down.png' %}">
+								</div>
+							</div>
+							<div style="flex:1"><p>${{item.get_total|floatformat:2}}</p></div>
+						</div>
+						{% endfor %}
+					</div>
 				</div>
-				{% endfor %}
 			</div>
 		</div>
 	</div>

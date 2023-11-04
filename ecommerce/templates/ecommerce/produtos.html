@@ -4,47 +4,6 @@
 {% block title %}Camisetas{% endblock %}
 
 {% block body %}
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrinho</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <!-- card de produtos no carrinho -->
-            {% for pedido in carrinho %}
-                <div class="row">
-                    <div class="cardShirt">
-                        <div class="">
-                            <img src="{{pedido.produto.img_url}}" alt="" srcset="" />
-                        </div>
-                        <div class="shirtInfos">
-                            <div class="row">
-                                <h5>{{pedido.produto.nome_produto}}</h5>
-                            </div>
-                            <div class="row">
-                                <p>R$ {{pedido.produto.valor_produto}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Quantidade : {{pedido.quantidade}}</p>
-                            </div>
-                        </div>
-
-                        <a href="{% url 'delete_carrinho_produtos' pedido.pk %}">
-                            <button class="btn btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
-            
-
-            <h5 id="subTotal">Subtotal: R$ 399,99</h5>
-
-            <a href="carrinho.html" class="btn btn-outline-danger showCart">Ver Carrinho</a>
-
-        </div>
-    </div>
     <div class="container-fluid cardsProduct">
         <div class="row" style="gap: 20px; padding: 30px;">
             {% for produto in produtos %}

@@ -11,17 +11,8 @@ from django.urls import reverse
 
 def index(request):
     produtos = Produto.objects.all().order_by("?")
-    carrinho = ""
-    if request.user.is_authenticated:
-        try:
-            carrinho = Pedido.objects.get(usuario=request.user).items.all()
-            # print(carrinho[0].produto.img_url)
-        except ObjectDoesNotExist:
-            pass
-
     return render(request, "ecommerce/index.html", context={
         "produtos": produtos[:5],
-        "carrinho": carrinho,
     })
 
 
@@ -46,16 +37,8 @@ def search_bar(request):
 
 def produtos(request):
     produtos = Produto.objects.all()
-    carrinho = ""
-    if request.user.is_authenticated:
-        try:
-            carrinho = Pedido.objects.get(usuario=request.user).items.all()
-            # print(carrinho[0].produto.img_url)
-        except ObjectDoesNotExist:
-            pass
     return render(request, "ecommerce/produtos.html", context={
         "produtos": produtos,
-        "carrinho": carrinho
     })
 
 
@@ -115,20 +98,37 @@ def produto_page(request, produto_pk):
 
     produto = Produto.objects.get(pk=produto_pk)
     carrinho = ""
-    if request.user.is_authenticated:
-        try:
-            carrinho = Pedido.objects.get(usuario=request.user).items.all()
-            # print(carrinho[0].produto.img_url)
-        except ObjectDoesNotExist:
-            pass
     return render(request,"ecommerce/produto.html",context={
         "produto": produto,
-        "carrinho": carrinho,
     })
 
 
 def carrinho(request):
+    if request.user.is_authenticated:
+        cliente = request.user
+        pedido, created = Pedido.objects.get_or_create(usuario=cliente, complete=False)
+        carrinho = pedido.items.all()
+    else:
+        carrinho = []
+        pedido = {"get_total_carrinho": 0, "get_total_items": 0}
+
     return render(request, "ecommerce/carrinho.html", context={
+        "carrinho": carrinho,
+        "pedido": pedido,
+    })
+
+def checkout(request):
+    if request.user.is_authenticated:
+        cliente = request.user
+        pedido, created = Pedido.objects.get_or_create(usuario=cliente, complete=False)
+        carrinho = pedido.items.all()
+    else:
+        carrinho = []
+        pedido = {"get_total_carrinho": 0, "get_total_items": 0}
+
+    return render(request, "ecommerce/checkout.html", context={
+        "carrinho": carrinho,
+        "pedido": pedido,
     })
 
 @login_required

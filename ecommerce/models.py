@@ -33,6 +33,17 @@ class Pedido(models.Model):
     def __str__(self):
         return f"ID: {self.pk} | Cliente: {self.usuario}"
     
+    @property
+    def get_total_carrinho(self):
+        itempedido = self.items.all()
+        total = sum([item.get_total for item in itempedido])
+        return total
+        
+    @property
+    def get_total_items(self):
+        itempedido = self.items.all()
+        total = sum([item.quantidade for item in itempedido])
+        return total
     
 class ItemPedido(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="produto_item", blank=True, null=True)
@@ -42,6 +53,11 @@ class ItemPedido(models.Model):
 
     def __str__(self):
         return f"Pedido: {self.produto}"
+    
+    @property
+    def get_total(self):
+        total = self.quantidade * self.produto.valor_produto
+        return total
     
 class Endereco(models.Model):
     numero = models.IntegerField()

@@ -569,14 +569,12 @@ a {
 }
 
 .quantity{
-	display: inline-block;
 	font-weight: 700;
-	padding-right:10px;
 }
 
+
 .cart-row{
-	display: flex;
-    align-items: flex-stretch;
+	  display: flex;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ececec;
@@ -601,4 +599,10 @@ a {
 
 .row-image{
 	width: 100px;
+}
+
+.form-field{
+	width:250px;
+	display: inline-block;
+	padding: 5px;
 }
