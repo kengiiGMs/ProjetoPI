@@ -3,15 +3,15 @@
 
 {% block title %}A Toca Dos Animes{% endblock %}
 
-{% block body %}    
+{% block body %}
     <main>
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div id="carouselExample" class="carousel slide">
+                    <div id="productCarousel" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="carousel-item active ratio ratio-1x1">
-                                <img src="{{produto.img_url}}" class="w-100 img-fluid" alt="...">
+                                <img src="{{produto.img_url}}" class="w-100 img-fluid" alt="..." width="">
                             </div>
                             <div class="carousel-item ratio ratio-1x1">
                                 <img src="{{produto.img_url}}" class="w-100 img-fluid" alt="...">
@@ -37,7 +37,8 @@
                         <h1>{{produto.nome_produto}}</h1>
                     </div>
                     <div class="row">
-                        <div class="col-4"> <i class="bi bi-star-fill"></i>
+                        <div class="col-3" style=""> 
+                            <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
@@ -53,53 +54,49 @@
                     <div class="row">
                         <p>Tamanho</p>
                         <div class="container">
-                            <form action="">
-                                <input type="radio" class="btn-check d-flex" name="options-base" id="option5"
-                                    autocomplete="off" checked>
-                                <label class="btn" for="option5">P</label>
+                            <form action="{% url 'produto_page' produto.pk %}" method="post">
+                                {% csrf_token %}
+                                <input type="radio" class="btn-check d-flex" name="tamanho" id="tamanho_p"
+                                    autocomplete="off" value="P" checked>
+                                <label class="btn" for="tamanho_p">P</label>
 
-                                <input type="radio" class="btn-check" name="options-base" id="option6"
-                                    autocomplete="off">
-                                <label class="btn" for="option6">M</label>
+                                <input type="radio" class="btn-check" name="tamanho" id="tamanhoM"
+                                    autocomplete="off" value="M">
+                                <label class="btn" for="tamanhoM">M</label>
 
-                                <input type="radio" class="btn-check" name="options-base" id="option7"
-                                    autocomplete="off">
-                                <label class="btn" for="option7">G</label>
+                                <input type="radio" class="btn-check" name="tamanho" id="tamanho_g"
+                                    autocomplete="off" value="G">
+                                <label class="btn" for="tamanho_g">G</label>
 
-                                <input type="radio" class="btn-check" name="options-base" id="option8"
-                                    autocomplete="off">
-                                <label class="btn" for="option8">GG</label>
+                                <input type="radio" class="btn-check" name="tamanho" id="tamanho_gg"
+                                    autocomplete="off" value="GG">
+                                <label class="btn" for="tamanho_gg">GG</label>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <label for="exampleInputQuantity" class="form-label">Quantidade</label>
+                                        <input type="number" class="form-control d-flex" id="inputQuantity" min="1" name="quantidade" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-grid gap-2 mb-2">
+                                        <button class="btn btn-danger" type="submit" name="carrinho" value="xd">Adicionar ao Carrinho</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-grid gap-2">
+                                        <button class="btn btn-danger" type="submit" name="finalizar" value="True">Finalizar Compra</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="row mb-2">
-                        <label for="exampleInputQuantity" class="form-label">Quantidade</label>
-                        <input type="number" class="form-control d-flex" id="inputQuantity" min="1">
-                    </div>
-                    <div class="row">
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-danger" type="submit">Adicionar ao Carrinho</button>
-                        </div>
-                    </div>
-                    </form>
                 </div>
             </div>
             <div class="row">
                 <div class="col-4">
                     <div class="row">
-                        <p></p>
-                    </div>
-                    <div class="row">
-                        <p></p>
-                    </div>
-                    <div class="row">
-                        <p></p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div style="margin:20px">
                         <p>{{produto.descricao_produto}}</p>
                     </div>
-
                 </div>
             </div>
             <div class="row">

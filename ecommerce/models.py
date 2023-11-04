@@ -36,7 +36,7 @@ class Pedido(models.Model):
     
 class ItemPedido(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="produto_item", blank=True, null=True)
-    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, blank=True, null=True, related_name="pedido_pertencente")
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, blank=True, null=True, related_name="items")
     quantidade = models.PositiveIntegerField(null=True, blank=True)
     data_adicionada = models.DateTimeField(auto_now_add=True)
 

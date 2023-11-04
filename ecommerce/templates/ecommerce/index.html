@@ -90,15 +90,15 @@
         <div class="container-fluid cardsProduct">
             <div class="row" style="gap: 20px; padding: 30px;">
                 {% for produto in produtos %}
-                    <div class="col-2 shirt" style="">
+                    <div class="col-2 shirt">
                         <a href="{% url 'produto_page' produto.pk %}" style="color: inherit; text-decoration: none;">
                             <div class="cardProduct">
-                                <img src="{{produto.img_url}}" class="card-img-top" alt="..."/>
+                                <img src="{{produto.img_url}}" class="card-img-top" alt="..." style="max-height: 168px;">
                                 <div class="card-body">
                                     <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                         class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                     <h5 class="card-title">{{produto.nome_produto}}</h5>
-                                    <br />
+                                    <br>
                                     <p class="card-text">R$ {{produto.valor_produto}}</p>
                                 </div>
                             </div>
