@@ -189,7 +189,6 @@ main {
   border-radius: 5px;
   display: flex;
   align-content: center;
-
 }
 
 .categoriesLogo{
@@ -610,4 +609,5 @@ a {
 #productCarousel .product-carousel{
   margin: auto; 
   width: 100%;
+  height: 100%;
 }

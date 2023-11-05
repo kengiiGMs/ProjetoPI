@@ -9,33 +9,34 @@
 					<form class="row g-2" action="{% url 'checkout' %}" method="POST">
 						{% csrf_token %}
 						<div class="col-md-6">
-							<!-- <label for="inputEmail4" class="form-label">Nome</label> -->
-							<input type="text" class="form-control" id="inputEmail4" placeholder="Nome" name="nome" value="{{request.user.first_name}}">
+							<input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" value="{{request.user.first_name}}" required>
 						</div>
 						<div class="col-md-6">
-							<!-- <label for="inputPassword4" class="form-label">Sobrenome</label> -->
-							<input type="text" class="form-control" id="inputPassword4" placeholder="Sobrenome"
-								name="sobrenome" value="{{request.user.last_name}}">
+							<input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome"
+								name="sobrenome" value="{{request.user.last_name}}" required>
 						</div>
 						<div
 							style="padding: 5px 0px 5px 8px; border-top: 1px solid rgba(0, 0, 0, 0.158); border-bottom: 1px solid rgba(0, 0, 0, 0.158);">
 							<b>Informações de Envio:</b>
 						</div>
 						<div class="col-8">
-							<input type="text" class="form-control" id="inputAddress" placeholder="Rua" name="rua">
+							<input type="text" class="form-control" id="logradouro" placeholder="Rua" name="rua" required>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control" id="inputAddress2" placeholder="Número" name="numero">
+							<input type="number" min="0" class="form-control" id="numero" placeholder="Número" name="numero" required>
 						</div>
 						<div class="col-6">
-							<input type="text" class="form-control" id="inputAddress" placeholder="Bairro" name="bairro">
+							<input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro" required>
 						</div>
 						<div class="col-6">
-							<input type="text" class="form-control" id="inputAddress2" placeholder="Complemento (opcional)"
+							<input type="text" class="form-control" id="complemento" placeholder="Complemento (opcional)"
 								name="complemento">
 						</div>
+						<div class="col-12">
+							<input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade" required>
+						</div>
 						<div class="col-md-4">
-							<input type="text" class="form-control" id="inputCity" placeholder="CEP" name="cep">
+							<input type="text" maxlength="8" class="form-control" id="cep" placeholder="CEP" name="cep" required autofocus>
 						</div>
 						<div class="col-md-4">
 							<select id="inputState" class="form-select" name="estado">
@@ -69,11 +70,12 @@
 								<option value="EX">Estrangeiro</option>
 							</select>
 						</div>
-						<div class="col-md-4">
-							<select id="inputState" class="form-select">
-								<option value="BR">Brasil</option>
+						<div class="col-md-4 mb-2">
+							<select id="inputState" class="form-select" disabled>
+								<option value="BR" selected>Brasil</option>
 							</select>
 						</div>
+						<strong style="color: red; display: none;" id="mensagem-erro">CEP não encontrado</strong>
 				</div>
 				<br>
 				<div class="container-fluid box-element">
@@ -84,22 +86,22 @@
 						</div>
 						<div class="col-md-12">
 							<input type="number" class="form-control" id="inputEmail4" placeholder="Número do Cartão"
-								name="metodo_pagamento">
+								name="metodo_pagamento" required>
 						</div>
 						<div class="col-md-6">
 							<input inputmode="numeric" maxlength="7" class="form-control" id="inputPassword4" placeholder="Vencimento (MM/AA)"
-								name="vencimento">
+								name="vencimento" required>
 						</div>
 						<div class="col-md-6">
 							<input type="text" class="form-control" id="inputPassword4" placeholder="Código de Segurança"
-								name="cvv">
+								name="cvv" required>
 						</div>
 						<div class="col-md-8">
 							<input type="text" class="form-control" id="inputPassword4"
-								placeholder="Nome impresso no cartão" name="nome_cartão">
+								placeholder="Nome impresso no cartão" name="nome_cartão" required>
 						</div>
 						<div class="col-md-4">
-							<input type="text" class="form-control" id="inputPassword4" placeholder="CPF" name="cpf">
+							<input type="text" class="form-control" id="inputPassword4" placeholder="CPF" name="cpf" required>
 						</div>
 						<div class="col-12">
 							<input type="submit" value="Pagar" class="btn btn-outline-danger">
@@ -118,7 +120,7 @@
 					<hr>
 					{% for item in carrinho %}
 					<div class="cart-row">
-						<div style="flex:2"><img class="row-image" src="{{item.produto.img_url}}"></div>
+						<div style="flex:1"><img class="row-image" src="{{item.produto.image.url}}"></div>
 						<div style="flex:2">
 							<p>{{item.produto.nome_produto}}</p>
 						</div>
@@ -136,4 +138,44 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		const mensagemErro = document.querySelector("#mensagem-erro");
+		
+		document.getElementById("cep").addEventListener('input', function() {
+			const cep = this.value
+
+			if (cep.length == 8){
+				const url = `https://viacep.com.br/ws/${cep}/json/`;
+
+				fetch(url)
+				.then(response => response.json())
+				.then(data => {
+					if (data.erro) {
+						mensagemErro.style.display = 'block';
+						resetField()
+					} else {
+						mensagemErro.style.display = 'none';
+						document.getElementById('logradouro').value = data.logradouro;
+						document.getElementById('complemento').value = data.complemento;
+						document.getElementById('bairro').value = data.bairro;
+						document.getElementById('cidade').value = data.localidade;
+					}
+				})
+				.catch(error => {
+					console.log("Erro ao buscar CEP", error);
+					mensagemErro.style.display = 'block';
+					resetFields()
+				})
+			}
+		})
+
+		function resetFields() {
+            document.getElementById('logradouro').value = '';
+            document.getElementById('complemento').value = '';
+            document.getElementById('bairro').value = '';
+            document.getElementById('cidade').value = '';
+		}
+
+	</script>
 {% endblock %}

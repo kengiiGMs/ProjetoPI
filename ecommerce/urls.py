@@ -4,9 +4,9 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("commands", views.commands, name="commands"),
     path("carrinho", views.carrinho, name="carrinho"),
     path("checkout", views.checkout, name="checkout"),
+    path("user_page", views.user_page, name="user_page"),
     path("search_bar", views.search_bar, name="search_bar"),
     path("add_produto", views.add_produto, name="add_produto"),
     path("produto/<int:produto_pk>", views.produto_page, name="produto_page"),

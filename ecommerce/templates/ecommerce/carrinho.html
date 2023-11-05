@@ -35,8 +35,12 @@
 							</div>
 							{% for item in carrinho %}
 								<div class="cart-row" style="justify-content: center; align-items: center;">
-									<div style="flex:1"><img class="row-image" src="{{item.produto.img_url}}"></div>
-									<div style="flex:1;"><p>{{item.produto.nome_produto}}</p></div>
+									<div style="flex:1"><img class="row-image text-center" src="{{item.produto.image.url}}"></div>
+									<div style="flex:1;">
+										<a href="{% url 'produto_page' item.produto.pk %}" style="color: black; font-weight: bold;">
+											<p>{{item.produto.nome_produto}} ({{item.tamanho}})</p>
+										</a>
+									</div>
 									<div style="flex:1"><p>R$ {{item.produto.valor_produto}}</p></div>
 									<div style="flex:1">
 										<div style="padding-left: 30px;">

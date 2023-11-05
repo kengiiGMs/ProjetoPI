@@ -1,11 +1,13 @@
 from .models import User, Pedido, Produto, ItemPedido, Endereco, Categoria
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.db import IntegrityError
 from django.shortcuts import render
 from django.urls import reverse
+
+def set_shipping(post):
+    pass
 
 # Create your views here.
 
@@ -39,8 +41,13 @@ def produtos(request, category_name):
     if category_name == "all":
         produtos = Produto.objects.all()
     else:
-        categoria, create = Categoria.objects.get_or_create(nome_categoria=category_name)
-        produtos = Produto.objects.filter(categorias=categoria)
+        categoria = Categoria.objects.filter(nome_categoria=category_name).first()
+
+        if not categoria:
+            produtos = Produto.objects.all()
+        else:
+            produtos = Produto.objects.filter(categorias=categoria)
+            
     return render(request, "ecommerce/produtos.html", context={
         "produtos": produtos,
     })
@@ -50,6 +57,16 @@ def produtos(request, category_name):
 def add_produto(request):
     if request.user.is_superuser or request.user.adm:
         if request.method == "POST":
+            categoria = request.POST.get("categoria")
+            nova_categoria = request.POST.get("nova_categoria")
+            
+            # Só cria uma nova categoria caso nova_categoria tenha um valor e categoria == Nenhuma.
+            if nova_categoria and categoria == "Nenhuma":
+                categoria = Categoria.objects.create(nome_categoria=nova_categoria)
+                categoria.save()
+                categoria = categoria.pk
+                print(f"Condicional: {categoria}")
+
             nome = request.POST.get("nome_produto")
             p = request.POST.get("tamanho_p")
             m = request.POST.get("tamanho_m")
@@ -57,9 +74,10 @@ def add_produto(request):
             gg = request.POST.get("tamanho_gg")
             descricao = request.POST.get("descricao_produto")
             valor = request.POST.get("valor_produto")
-            url = request.POST.get("url_produto")
+            url = request.POST.get("url_produto", "")
+            image = request.FILES.get("image")
 
-            Produto.objects.create(
+            produto = Produto.objects.create(
                 nome_produto=nome,
                 tamanho_p=p,
                 tamanho_m=m,
@@ -68,12 +86,20 @@ def add_produto(request):
                 descricao_produto=descricao,
                 valor_produto=valor,
                 img_url=url,
+                image=image
             )
+            produto.save()
             print("PRODUTO SALVO")
+
+            if categoria != "False":
+                cat = Categoria.objects.get(pk=categoria)
+                cat.produto.add(produto)
 
             return HttpResponseRedirect(reverse("index"))
 
-        return render(request, "ecommerce/add_produto.html")
+        return render(request, "ecommerce/add_produto.html", context={
+            "categorias": Categoria.objects.all()
+        })
     else:
         return HttpResponseRedirect(reverse("index"))
 
@@ -82,17 +108,22 @@ def produto_page(request, produto_pk):
     if request.method == "POST":
         if request.user.is_authenticated:
             produto = Produto.objects.get(pk=produto_pk)
-            pedido, create = Pedido.objects.get_or_create(usuario=request.user)
+            pedido, create = Pedido.objects.get_or_create(usuario=request.user, complete=False)
             quantidade = request.POST.get("quantidade")
-            item_pedido = pedido.items.filter(produto=produto).first()
+            tamanho = request.POST.get("tamanho")
+            
+            # Filtra todos os produtos iguais de mesmo tamanho e pega o primeiro 
+            item_pedido = pedido.items.filter(produto=produto).filter(tamanho=tamanho).first()
 
+            # Se existir o item filtrado, então apenas adiciona a quantidade desejada ao carrinho
             if item_pedido:
                 item_pedido = ItemPedido.objects.get(pk=item_pedido.pk)
                 item_pedido.quantidade += int(quantidade)
                 item_pedido.save()
-                
+            
+            # Caso não exista, cria um ItemPedido novo
             else:
-                ItemPedido.objects.create(produto=produto, pedido=pedido, quantidade=quantidade)
+                ItemPedido.objects.create(produto=produto, pedido=pedido, quantidade=quantidade, tamanho=tamanho)
 
             if request.POST.get("carrinho"):
                 return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
@@ -126,9 +157,9 @@ def carrinho_action(request, item_pk, action):
     if request.method == "POST":
         item = ItemPedido.objects.get(pk=item_pk)
         if action == "adicionar":
-            item.quantidade +=1
+            item.quantidade += 1
         elif action == "remover":
-            item.quantidade -=1
+            item.quantidade -= 1
         item.save()
         
         if item.quantidade <= 0:
@@ -142,8 +173,10 @@ def carrinho_action(request, item_pk, action):
 @login_required(login_url="/login")
 def checkout(request):
     if request.method == "POST":
-        for key, value in request.POST.items():
-            print(f"{key}: {value} \n")
+        pedido = Pedido.objects.get(usuario=request.user, complete=False)
+        pedido.complete = True
+        pedido.save()
+        
         return HttpResponseRedirect(reverse("checkout"))
 
     if request.user.is_authenticated:
@@ -163,13 +196,14 @@ def checkout(request):
     })
 
 @login_required
-def commands(request):
-    if request.user.is_superuser or request.user.adm:
-        return render(request, "ecommerce/commands.html")
+def user_page(request):
+    pedidos_finalizados = Pedido.objects.filter(usuario=request.user, complete=True)
+    pedido_andamento = Pedido.objects.filter(usuario=request.user, complete=False)
+    return render(request, "ecommerce/user_page.html", context={
+        "pedidos_finalizados": pedidos_finalizados,
+        "pedido_andamento": pedido_andamento,
+    })
 
-    else:
-        return HttpResponseRedirect(reverse("index"))
-    
 
 # USER AUTHENTICATION !
 

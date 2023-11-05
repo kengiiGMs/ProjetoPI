@@ -1,0 +1,66 @@
+{% extends 'ecommerce/layout.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}A Toca Dos Animes{% endblock %}
+
+{% block body %}
+    <div class="container-fluid p-4">
+        {% if user.is_superuser or user.adm %}
+            <div class="row pb-3">
+                <div class="col">
+                    <a href="{% url 'add_produto' %}"><button class="btn btn-outline-danger btn-lg" style="padding: 2px 5px 2px 5px;">Adicionar Produto</button></a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-6">
+                <h1>Olá, {{user.get_full_name}}</h1>
+                <h6 style="color: #f80000; border-bottom: 1px solid #f80000; padding-bottom: 10px;">Pedidos Finalizados</h6>
+            </div>
+        </div>
+        {% for pedido in pedidos_finalizados %}
+            <div class="row mb-3">
+                <div class="col-6" style="border-bottom: 1px solid #F80000;">
+                    <p>
+                        Usuário: <strong>{{pedido.usuario}}</strong> <br>
+                        Criado em: <strong>{% language 'pt-br' %}{{ pedido.data_pedido|date:'j F, Y' }}{% endlanguage %}</strong>
+                        <br>
+                        Status: <strong>Completo</strong> <br>
+                        Valor Total: <strong>{{pedido.get_total_carrinho}} R$</strong>
+                    </p>
+                    <p>
+                        <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{pedido.pk}}"
+                            aria-expanded="false" aria-controls="collapse-{{pedido.pk}}">
+                            Produtos
+                        </button>
+                    </p>
+                    <div class="collapse mb-3" id="collapse-{{pedido.pk}}">
+                        <div class="card card-body border border-danger" style="width: fit-content;">
+                            <div class="container">
+                                {% for item in pedido.items.all %}
+                                    <div class="row border border-dark">
+                                        <div class="col-sm">
+                                            <img class="row-image" src="{{item.produto.image.url}}">
+                                        </div>
+                                        <div class="col-sm">
+                                            <div class="col-sm">
+                                                <strong>{{item.produto.nome_produto}}</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>Quantidade: {{item.quantidade}}</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>Total: R$ {{item.get_total}}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

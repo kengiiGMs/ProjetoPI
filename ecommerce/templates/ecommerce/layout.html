@@ -44,11 +44,7 @@
                         {% if user.is_authenticated %}
                             <ul class="navbar-nav me-auto iconsLinks">
                                 <li class="nav-item">
-                                    {% if user.is_superuser or user.adm %}
-                                      <a class="nav-link" href="{% url 'commands' %}" style="font-size: 10px;"><i class="bi bi-person-fill"><strong style="color: white; margin-left: 5px;">{{request.user.first_name}}</strong></i></a>
-                                    {% else %}
-                                      <a class="nav-link" href="{% url 'commands' %}" style="font-size: 10px;"><i class="bi bi-person-fill"><strong style="color: white; margin-left: 5px;">{{request.user.first_name}}</strong></i></a>
-                                    {% endif %}
+                                    <a class="nav-link" href="{% url 'user_page' %}" style="font-size: 10px;"><i class="bi bi-person-fill"><strong style="color: white; margin-left: 5px;">{{request.user.first_name}}</strong></i></a>
                                 </li>
                             </ul>
                             <div class="d-flex justify-content-center">

@@ -15,7 +15,8 @@ class Produto(models.Model):
     nome_produto = models.CharField(max_length=255)
     descricao_produto = models.TextField()
     valor_produto = models.DecimalField(max_digits=6, decimal_places=2)
-    img_url = models.URLField()
+    image = models.ImageField(null=True, blank=False)
+    img_url = models.URLField(null=True, blank=True)
     tamanho_p = models.IntegerField(blank=False, null=True)
     tamanho_m = models.IntegerField(blank=False, null=True)
     tamanho_g = models.IntegerField(blank=False, null=True)
@@ -32,7 +33,7 @@ class Categoria(models.Model):
         return self.nome_categoria
 
 class Pedido(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="usuario_pedido")
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pedidos")
     data_pedido = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
 
@@ -54,6 +55,7 @@ class Pedido(models.Model):
 class ItemPedido(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="produto_item", blank=True, null=True)
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, blank=True, null=True, related_name="items")
+    tamanho = models.CharField(max_length=2, default="", blank=False)
     quantidade = models.PositiveIntegerField(null=True, blank=True)
     data_adicionada = models.DateTimeField(auto_now_add=True)
 

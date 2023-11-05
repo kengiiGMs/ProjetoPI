@@ -10,11 +10,15 @@
                 <div class="col-2 shirt">
                     <a href="{% url 'produto_page' produto.pk %}" style="color: inherit; text-decoration: none;">
                         <div class="cardProduct">
-                            <img src="{{produto.img_url}}" class="card-img-top" alt="..." style="max-height: 240px;">
+                            {% if produto.image %}
+                                <img src="{{produto.image.url}}" class="card-img-top img-fluid" alt="...">
+                            {% else %}
+                                <img src="{{produto.img_url}}" class="card-img-top" alt="...">
+                            {% endif %}
                             <div class="card-body">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                <h5 class="card-title">{{produto.nome_produto}}</h5>
+                                <h5 class="card-title">{{produto.nome_produto|truncatechars:17}}</h5>
                                 <br>
                                 <p class="card-text">R$ {{produto.valor_produto}}</p>
                             </div>
