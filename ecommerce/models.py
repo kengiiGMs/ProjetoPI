@@ -24,6 +24,12 @@ class Produto(models.Model):
     def __str__(self):
         return self.nome_produto
 
+class Categoria(models.Model):
+    produto = models.ManyToManyField(Produto, related_name="categorias")
+    nome_categoria = models.CharField(max_length=32, default="", blank=False)
+
+    def __str__(self):
+        return self.nome_categoria
 
 class Pedido(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="usuario_pedido")
@@ -70,3 +76,4 @@ class Endereco(models.Model):
 
     def __str__(self):
         return f"{self.bairro}, {self.numero}"
+    

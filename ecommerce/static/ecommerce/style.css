@@ -255,6 +255,7 @@ main {
   box-shadow: 0px 8px 2px #d9d9d9;
   padding: 10px;
   text-align: center;
+  /* flex: 1 0 auto; */
 }
 
 .cardProduct:hover{
@@ -584,7 +585,6 @@ a {
 	width: 12px;
 	cursor: pointer;
 	display: block;
-	margin-top: 5px;
 	transition:.1s;
 }
 
@@ -605,4 +605,9 @@ a {
 	width:250px;
 	display: inline-block;
 	padding: 5px;
+}
+
+#productCarousel .product-carousel{
+  margin: auto; 
+  width: 100%;
 }

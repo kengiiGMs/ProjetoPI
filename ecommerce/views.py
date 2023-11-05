@@ -1,4 +1,4 @@
-from .models import User, Pedido, Produto, ItemPedido, Endereco
+from .models import User, Pedido, Produto, ItemPedido, Endereco, Categoria
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -35,8 +35,12 @@ def search_bar(request):
     return HttpResponseRedirect(reverse("index"))
 
 
-def produtos(request):
-    produtos = Produto.objects.all()
+def produtos(request, category_name):
+    if category_name == "all":
+        produtos = Produto.objects.all()
+    else:
+        categoria, create = Categoria.objects.get_or_create(nome_categoria=category_name)
+        produtos = Produto.objects.filter(categorias=categoria)
     return render(request, "ecommerce/produtos.html", context={
         "produtos": produtos,
     })
@@ -76,28 +80,29 @@ def add_produto(request):
 
 def produto_page(request, produto_pk):
     if request.method == "POST":
-        if request.POST.get("carrinho") and request.user.is_authenticated:
+        if request.user.is_authenticated:
             produto = Produto.objects.get(pk=produto_pk)
-            try: 
-                pedido = Pedido.objects.get(usuario=request.user)
-
-            except ObjectDoesNotExist:
-                pedido = Pedido.objects.create(usuario=request.user)
-
+            pedido, create = Pedido.objects.get_or_create(usuario=request.user)
             quantidade = request.POST.get("quantidade")
-            ItemPedido.objects.create(produto=produto, pedido=pedido, quantidade=quantidade)
-            pedido.save()
-            return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
-        
-        elif request.POST.get("finalizar") and request.user.is_authenticated:
-            print("finalizar")
-            return HttpResponseRedirect(reverse("index"))
-        
+            item_pedido = pedido.items.filter(produto=produto).first()
+
+            if item_pedido:
+                item_pedido = ItemPedido.objects.get(pk=item_pedido.pk)
+                item_pedido.quantidade += int(quantidade)
+                item_pedido.save()
+                
+            else:
+                ItemPedido.objects.create(produto=produto, pedido=pedido, quantidade=quantidade)
+
+            if request.POST.get("carrinho"):
+                return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
+            
+            elif request.POST.get("finalizar"):
+                return HttpResponseRedirect(reverse("carrinho"))
         else:
             return HttpResponseRedirect(reverse("login"))
 
     produto = Produto.objects.get(pk=produto_pk)
-    carrinho = ""
     return render(request,"ecommerce/produto.html",context={
         "produto": produto,
     })
@@ -117,7 +122,30 @@ def carrinho(request):
         "pedido": pedido,
     })
 
+def carrinho_action(request, item_pk, action):
+    if request.method == "POST":
+        item = ItemPedido.objects.get(pk=item_pk)
+        if action == "adicionar":
+            item.quantidade +=1
+        elif action == "remover":
+            item.quantidade -=1
+        item.save()
+        
+        if item.quantidade <= 0:
+            item.delete()
+
+        return HttpResponseRedirect(reverse("carrinho"))
+    else:
+        return HttpResponseRedirect(reverse("index"))
+
+
+@login_required(login_url="/login")
 def checkout(request):
+    if request.method == "POST":
+        for key, value in request.POST.items():
+            print(f"{key}: {value} \n")
+        return HttpResponseRedirect(reverse("checkout"))
+
     if request.user.is_authenticated:
         cliente = request.user
         pedido, created = Pedido.objects.get_or_create(usuario=cliente, complete=False)
@@ -126,6 +154,9 @@ def checkout(request):
         carrinho = []
         pedido = {"get_total_carrinho": 0, "get_total_items": 0}
 
+    if not carrinho:
+        return HttpResponseRedirect(reverse("index"))
+    
     return render(request, "ecommerce/checkout.html", context={
         "carrinho": carrinho,
         "pedido": pedido,
@@ -138,21 +169,7 @@ def commands(request):
 
     else:
         return HttpResponseRedirect(reverse("index"))
-
-@login_required
-def delete_carrinho_index(request, pedido_pk):
-    ItemPedido.objects.get(pk=pedido_pk).delete()
-    return HttpResponseRedirect(reverse("index"))
-
-@login_required
-def delete_carrinho_produtos(request, pedido_pk):
-    ItemPedido.objects.get(pk=pedido_pk).delete()
-    return HttpResponseRedirect(reverse("produtos"))
-
-@login_required
-def delete_carrinho_produto(request, pedido_pk, produto_pk):
-    ItemPedido.objects.get(pk=pedido_pk).delete()
-    return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
+    
 
 # USER AUTHENTICATION !
 
@@ -182,10 +199,11 @@ def logout_view(request):
 
 def register(request):
     if request.method == "POST":
+        first_name = request.POST.get("first_name").title()
+        last_name = request.POST.get("last_name").title()
         username = request.POST.get("email").lower()
         password = request.POST.get("password")
         confirmation = request.POST.get("confirmation")
-        first_name = request.POST.get("first_name")
 
         if password != confirmation:
             return render(
@@ -194,7 +212,7 @@ def register(request):
                 context={"message", "Passwords must match."},
             )
         try:
-            user = User.objects.create_user(username=username, password=password, first_name=first_name)
+            user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
             user.save()
         except IntegrityError:
             return render(
