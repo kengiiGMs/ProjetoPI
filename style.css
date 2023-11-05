@@ -463,3 +463,159 @@ footer img:hover{
     text-align: center; 
     justify-content: center;
   }
+
+
+/* Finalizar Pedido */
+
+  /* Confirmar Camisas */
+
+  .title_confirm{
+    color: var(--red-primary);
+    font-size: 22px;
+    font-weight: 900;
+    margin-left: 8%;
+    padding: 1%;
+  }
+
+  .cardGroups{
+    border: 2px solid var(--red-primary);
+    width: 90%;
+    margin-left: 5%;
+    height: 60vh;
+    border-radius: 3px;
+    padding: 1%;
+  }
+
+  .rowCardGroups{
+    display: flex;
+    margin-bottom: 1%;
+    gap: 5%;
+    height: 22vh;
+  }
+
+  .cardShirtConfirm{
+    border: 2px solid var(--red-primary);
+    width: 30%;
+    height: 100%;
+    align-items: center;
+    padding: 1%;
+    border-radius: 3px;
+  }
+
+  .cardShirtConfirm img{
+    max-width: 90%;
+    max-height: 90%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cardShirtConfirm p{
+    text-align: start;
+    font-size: 90%;
+    padding: 0;
+    margin-bottom: 1.5%;
+  }
+
+  .cardShirtConfirm button{
+    width: 75%;
+  }
+
+.subtotalConfirm{
+  color: var(--red-primary);
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 2%;
+  text-align: center;
+}
+
+  /* Dados de Entrega */
+
+  .detailsDelivery{
+    border: 2px solid var(--red-primary);
+      width: 90%;
+      margin-left: 5%;
+      height: 40vh;
+      border-radius: 3px;
+      padding: 4%;
+      margin-bottom: 1%;
+  }
+
+  .rowInput{
+    height: 10vh;
+  }
+
+  .inputDetailsDelivery{
+    border: none;
+    border-bottom: 2px solid var(--red-primary);
+    width: 20vw;
+    outline: none;
+    margin-right: 30px;
+  }
+
+  .inputDetailsDelivery::placeholder{
+    font-size: 20px;
+  }
+
+  .pagePay{
+    display: flex;
+    align-items: center;
+    margin: 1% 0% 1% 25%;
+    width: 50%;
+    text-align: center;
+  }
+
+/* Pagamento */
+  .pay{
+    border: 1.8px solid var(--red-primary);
+    border-radius: 3px;
+    width: 35vw;
+    margin: 1% 0% 1% 30%;
+    height: 40vh;
+    padding: 3%;
+  }
+
+  .pay h5{
+    color: var(--red-primary);
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 0;
+  }
+
+  .payInput{
+    border: none;
+    outline: none;
+    margin-top: 10%;
+    border-bottom: 1px solid var(--red-primary);
+  }
+
+  .mounthPay{
+    width: 10%;
+    margin-right: 5%;
+  }
+
+  .yearPay{
+    width: 10%;
+    margin-right: 5%;
+  }
+
+  .namePayInput{
+    width: 60%;
+    margin-right: 5%;
+  }
+
+  .numberPayInput{
+    width: 60%;
+    margin-right: 5%;
+  }
+
+  .cvcPay{
+    width: 10%;
+  }
+
+  .btnPay{
+    display: flex;
+    align-items: center;
+    margin: 5% 0% 1% 23%;
+    width: 50%;
+    text-align: center;
+  }
