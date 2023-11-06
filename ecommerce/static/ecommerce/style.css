@@ -578,6 +578,12 @@ a {
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ececec;
+    align-items: center;
+}
+
+.cart-row p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .chg-quantity{

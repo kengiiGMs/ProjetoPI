@@ -47,7 +47,7 @@ def produtos(request, category_name):
             produtos = Produto.objects.all()
         else:
             produtos = Produto.objects.filter(categorias=categoria)
-            
+
     return render(request, "ecommerce/produtos.html", context={
         "produtos": produtos,
     })
@@ -153,6 +153,7 @@ def carrinho(request):
         "pedido": pedido,
     })
 
+
 def carrinho_action(request, item_pk, action):
     if request.method == "POST":
         item = ItemPedido.objects.get(pk=item_pk)
@@ -194,6 +195,7 @@ def checkout(request):
         "carrinho": carrinho,
         "pedido": pedido,
     })
+
 
 @login_required
 def user_page(request):
