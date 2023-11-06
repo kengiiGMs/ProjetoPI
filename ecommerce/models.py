@@ -36,6 +36,8 @@ class Pedido(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pedidos")
     data_pedido = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
+    cupom = models.BooleanField(default=False, null=True)
+    novo_valor = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return f"ID: {self.pk} | Cliente: {self.usuario}"

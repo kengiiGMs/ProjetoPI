@@ -12,7 +12,29 @@
 						<table class="table">
 							<tr>
 								<th><h5>Items: <strong>{{pedido.get_total_items}}</strong></h5></th>
-								<th><h5>Total:<strong> R$ {{pedido.get_total_carrinho|floatformat:2}}</strong></h5></th>
+								<th>
+									<h5>Total:
+										{% if pedido.novo_valor %}
+											<strong> R$ {{pedido.novo_valor|floatformat:2}} </strong>
+										{% else %}
+											<strong> R$ {{pedido.get_total_carrinho|floatformat:2}} </strong>
+										{% endif %}
+								</h5>
+								{% if pedido.get_total_items > 0 %}
+									{% if pedido.cupom == False %}
+										<form action="{% url 'cupom' pedido.pk %}" method="POST" style="width: fit-content;">
+											{% csrf_token %}
+											<input type="text" class="form-control border border-danger" name="cupom" placeholder="Cupom">
+										</form>
+									{% else %}
+										<form action="{% url 'cupom' pedido.pk %}" method="POST" style="width: fit-content;">
+											{% csrf_token %}
+											<input type="text" class="form-control border border-danger" name="cupom" placeholder="Cupom" disabled>
+										</form>
+									{% endif %}
+									<i style="font-size: 13px;">{{message}}</i>
+								{% endif %}
+								</th>
 								<th>
 									{% if request.user and pedido.get_total_carrinho %}
 										<a  style="float:right; margin:5px;" class="btn btn-danger" href="{% url 'checkout' %}">Finalizar Pedido</a>

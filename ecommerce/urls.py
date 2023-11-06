@@ -12,6 +12,7 @@ urlpatterns = [
     path("produto/<int:produto_pk>", views.produto_page, name="produto_page"),
     path("produtos/<str:category_name>", views.produtos, name="produtos"),
     path("carrinho_action/<int:item_pk>/<str:action>", views.carrinho_action, name="carrinho_action"),
+    path("carrinho/cupom/<int:pedido_pk>", views.cupom, name="cupom"),
 
     # Auth
     path("login", views.login_view, name="login"),

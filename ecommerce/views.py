@@ -169,6 +169,31 @@ def carrinho_action(request, item_pk, action):
         return HttpResponseRedirect(reverse("carrinho"))
     else:
         return HttpResponseRedirect(reverse("index"))
+    
+def cupom(request, pedido_pk):
+    if request.method == "POST":
+        cupons = ["toca10"]
+        cupom = request.POST.get("cupom")
+        pedido = Pedido.objects.get(pk=pedido_pk)
+        
+        if cupom in cupons:
+            novo_valor = float(pedido.get_total_carrinho) - (float(pedido.get_total_carrinho) * 0.1)
+            pedido.novo_valor = novo_valor
+            pedido.cupom = True
+            pedido.save()
+            message = "Cupom adicionado com sucesso!"
+        else:
+            message = "Cupom inválido!"
+
+        carrinho = pedido.items.all()
+        
+        return render(request, "ecommerce/carrinho.html", context={
+            "carrinho": carrinho,
+            "pedido": pedido,
+            "message": message,
+        })
+    
+    return HttpResponseRedirect(reverse("index"))
 
 
 @login_required(login_url="/login")
