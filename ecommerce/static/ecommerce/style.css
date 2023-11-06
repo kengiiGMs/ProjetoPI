@@ -267,6 +267,9 @@ main {
   color: var(--red-primary);
 }
 
+.card-text{
+  font-weight: bolder;
+}
 
 /* Footer */
 

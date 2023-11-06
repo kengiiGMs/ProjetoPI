@@ -1,4 +1,4 @@
-from .models import User, Pedido, Produto, ItemPedido, Endereco, Categoria
+from .models import User, Pedido, Produto, ItemPedido, Categoria, Cupom, Endereco
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -172,14 +172,13 @@ def carrinho_action(request, item_pk, action):
     
 def cupom(request, pedido_pk):
     if request.method == "POST":
-        cupons = ["toca10"]
-        cupom = request.POST.get("cupom")
+        user_input = request.POST.get("cupom").lower()
         pedido = Pedido.objects.get(pk=pedido_pk)
+        cupom = Cupom.objects.filter(nome_cupom=user_input).first()
         
-        if cupom in cupons:
-            novo_valor = float(pedido.get_total_carrinho) - (float(pedido.get_total_carrinho) * 0.1)
-            pedido.novo_valor = novo_valor
-            pedido.cupom = True
+        if cupom:
+            pedido.cupom_status = True
+            pedido.cupom = cupom
             pedido.save()
             message = "Cupom adicionado com sucesso!"
         else:
@@ -224,11 +223,10 @@ def checkout(request):
 
 @login_required
 def user_page(request):
-    pedidos_finalizados = Pedido.objects.filter(usuario=request.user, complete=True)
-    pedido_andamento = Pedido.objects.filter(usuario=request.user, complete=False)
+    pedidos_finalizados = Pedido.objects.filter(usuario=request.user, complete=True).order_by("-data_pedido")
+    print(pedidos_finalizados)
     return render(request, "ecommerce/user_page.html", context={
         "pedidos_finalizados": pedidos_finalizados,
-        "pedido_andamento": pedido_andamento,
     })
 
 

@@ -32,15 +32,29 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nome_categoria
 
+class Cupom(models.Model):
+    nome_cupom = models.CharField(max_length=24, null=True, blank=False)
+    porcentagem = models.IntegerField(blank=False, null=True)
+
+    def __str__(self):
+        return self.nome_cupom
+
 class Pedido(models.Model):
+    cupom = models.ForeignKey(Cupom, on_delete=models.CASCADE, related_name="cupons_utilizados", blank=True, null=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pedidos")
     data_pedido = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
-    cupom = models.BooleanField(default=False, null=True)
-    novo_valor = models.FloatField(null=True, blank=True)
+    cupom_status = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return f"ID: {self.pk} | Cliente: {self.usuario}"
+    
+    @property
+    def get_total_cupom(self):
+        valor_total = self.get_total_carrinho
+        total = float(valor_total) - (float(valor_total) * (self.cupom.porcentagem / 100))
+        
+        return total
     
     @property
     def get_total_carrinho(self):
@@ -68,6 +82,8 @@ class ItemPedido(models.Model):
     def get_total(self):
         total = self.quantidade * self.produto.valor_produto
         return total
+    
+
     
 class Endereco(models.Model):
     numero = models.IntegerField()

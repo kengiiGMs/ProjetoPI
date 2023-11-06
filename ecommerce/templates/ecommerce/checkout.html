@@ -133,12 +133,15 @@
 					</div>
 					{% endfor %}
 					<h5 class="text-center">Items: {{pedido.get_total_items}}</h5>
-					<h5 class="text-center">Total: 
-						{% if pedido.novo_valor %}
-							<strong>R${{pedido.novo_valor|floatformat:2}}</strong>
-						{% else %}
-							<strong>R${{pedido.get_total_carrinho|floatformat:2}}</strong>
-						{% endif %}
+					<h5 class="text-center">
+						Total: 
+						<strong>
+							{% if pedido.cupom_status %}
+								R$ {{pedido.get_total_cupom|floatformat:2}}
+							{% else %}
+								R$ {{pedido.get_total_carrinho|floatformat:2}}
+							{% endif %}
+						</strong>
 					</h5>
 				</div>
 			</div>

@@ -27,9 +27,10 @@
                         Criado em: <strong>{% language 'pt-br' %}{{ pedido.data_pedido|date:'j F, Y' }}{% endlanguage %}</strong>
                         <br>
                         Status: <strong>Completo</strong> <br>
+                        Cupom: <strong>{{pedido.cupom.nome_cupom}}</strong> <br>
                         Valor Total:
-                            {% if pedido.novo_valor %}
-                                <strong> R$ {{pedido.novo_valor|floatformat:2}} </strong>
+                            {% if pedido.cupom_status %}
+                                <strong> R$ {{pedido.get_total_cupom|floatformat:2}} </strong>
                             {% else %}
                                 <strong> R$ {{pedido.get_total_carrinho|floatformat:2}} </strong>
                             {% endif %}
