@@ -39,7 +39,23 @@
                 </div>
                 <div class="col">
                     <div class="row">
-                        <h1>{{produto.nome_produto}}</h1>
+                        <div class="col">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    {% if user.is_superuser or user.adm %}
+                                        <form action="{% url 'deletar_produto' produto.pk %}" method="POST">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-danger">Deletar</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h1>{{produto.nome_produto}}</h1>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-1-sm"> 
@@ -94,6 +110,57 @@
                                 </div>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider" style="margin: 2% 0% 2% 0%;"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col border border-light-subtle p-3">
+                        <div class="py-2">
+                            <h5><strong>Avaliações de Clientes</strong></h5>
+                        </div>
+                        <hr style="opacity: 10%;">
+                        {% if user in compradores %}
+                            <form action="{% url 'comments' produto.pk %}" method="POST" style="width: 60%;">
+                                {% csrf_token %}
+                                <div class="mb-4">
+                                    <h6><strong>Escreva uma crítica</strong></h6>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label" style="font-size: 13px;">Título da revisão</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Título" name="titulo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label" style="font-size: 13px;">Corpo da Avaliação</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="texto"></textarea>
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger px-4 py-2" type="submit" style="border-radius: 0%;">Enviar crítica</button>
+                                </div>
+                            </form>
+                            <hr style="opacity: 10%;">
+                        {% endif %}
+                        {% for comment in comments %}
+                            <div class="px-2 py-3" style="width: 50%;">
+                                <div class="row">
+                                    <div class="col">
+                                        <p><strong>{{comment.titulo}}</strong></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p style="font-size: 15px;"><strong>{{comment.usuario}}</strong> às {{comment.data_comentario}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p style="font-size: 15px;">{{comment.texto}}</p>
+                                    </div>
+                                </div>
+                                <hr style="opacity: 15%;">
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

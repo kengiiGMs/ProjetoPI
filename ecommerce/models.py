@@ -21,9 +21,20 @@ class Produto(models.Model):
     tamanho_m = models.IntegerField(blank=False, null=True)
     tamanho_g = models.IntegerField(blank=False, null=True)
     tamanho_gg = models.IntegerField(blank=False, null=True)
+    compradores = models.ManyToManyField(User, blank=True, related_name="compras")
 
     def __str__(self):
         return self.nome_produto
+    
+class Comment(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=True, related_name="comentarios_feitos")
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE, blank=False, null=True, related_name="comentarios")
+    titulo = models.CharField(max_length=64, default="", blank=False)
+    texto = models.TextField()
+    data_comentario = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.usuario} | {self.produto} = {self.texto}"
 
 class Categoria(models.Model):
     produto = models.ManyToManyField(Produto, related_name="categorias")
@@ -51,10 +62,10 @@ class Pedido(models.Model):
     
     @property
     def get_total_cupom(self):
-        valor_total = self.get_total_carrinho
-        total = float(valor_total) - (float(valor_total) * (self.cupom.porcentagem / 100))
+        valor_carrinho = self.get_total_carrinho
+        total_cupom = float(valor_carrinho) - (float(valor_carrinho) * (self.cupom.porcentagem / 100))
         
-        return total
+        return total_cupom
     
     @property
     def get_total_carrinho(self):

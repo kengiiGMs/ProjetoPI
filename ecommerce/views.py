@@ -1,4 +1,4 @@
-from .models import User, Pedido, Produto, ItemPedido, Categoria, Cupom, Endereco
+from .models import User, Pedido, Produto, ItemPedido, Categoria, Cupom, Endereco, Comment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -134,9 +134,23 @@ def produto_page(request, produto_pk):
             return HttpResponseRedirect(reverse("login"))
 
     produto = Produto.objects.get(pk=produto_pk)
+    compradores = produto.compradores.all()
+    commentarios = produto.comentarios.all() 
     return render(request,"ecommerce/produto.html",context={
         "produto": produto,
+        "compradores": compradores,
+        "comments": commentarios
     })
+
+@login_required(login_url="/login")
+def deletar_produto(request, produto_pk):
+    user = request.user
+    if user.is_superuser or user.adm:
+        if request.method == "POST":
+            produto = Produto.objects.get(pk=produto_pk)
+            produto.delete()
+
+    return HttpResponseRedirect(reverse("index"))
 
 
 def carrinho(request):
@@ -194,12 +208,30 @@ def cupom(request, pedido_pk):
     
     return HttpResponseRedirect(reverse("index"))
 
+@login_required(login_url="/login")
+def comments(request, produto_pk):
+    if request.method == "POST":
+        produto = Produto.objects.get(pk=produto_pk)
+        titulo = request.POST.get("titulo")
+        texto = request.POST.get("texto")
+        usuario = request.user
+
+        Comment.objects.create(usuario=usuario, produto=produto, titulo=titulo, texto=texto)
+
+        return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
+    
+    return HttpResponseRedirect(reverse("index"))
 
 @login_required(login_url="/login")
 def checkout(request):
     if request.method == "POST":
         pedido = Pedido.objects.get(usuario=request.user, complete=False)
         pedido.complete = True
+        for item in pedido.items.all():
+            produto = item.produto
+            produto.compradores.add(request.user)
+            
+        produto.save()
         pedido.save()
         
         return HttpResponseRedirect(reverse("checkout"))
@@ -224,7 +256,6 @@ def checkout(request):
 @login_required
 def user_page(request):
     pedidos_finalizados = Pedido.objects.filter(usuario=request.user, complete=True).order_by("-data_pedido")
-    print(pedidos_finalizados)
     return render(request, "ecommerce/user_page.html", context={
         "pedidos_finalizados": pedidos_finalizados,
     })
