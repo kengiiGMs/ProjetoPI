@@ -32,6 +32,7 @@ class Comment(models.Model):
     titulo = models.CharField(max_length=64, default="", blank=False)
     texto = models.TextField()
     data_comentario = models.DateTimeField(auto_now_add=True)
+    estrelas = models.IntegerField(blank=False, null=True)
 
     def __str__(self):
         return f"{self.usuario} | {self.produto} = {self.texto}"

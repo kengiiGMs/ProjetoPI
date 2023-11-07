@@ -135,11 +135,13 @@ def produto_page(request, produto_pk):
 
     produto = Produto.objects.get(pk=produto_pk)
     compradores = produto.compradores.all()
-    commentarios = produto.comentarios.all() 
+    commentarios = produto.comentarios.all()
+    estrelas = range(1,6)
     return render(request,"ecommerce/produto.html",context={
         "produto": produto,
         "compradores": compradores,
-        "comments": commentarios
+        "comments": commentarios,
+        "estrelas": estrelas,
     })
 
 @login_required(login_url="/login")
@@ -211,12 +213,13 @@ def cupom(request, pedido_pk):
 @login_required(login_url="/login")
 def comments(request, produto_pk):
     if request.method == "POST":
-        produto = Produto.objects.get(pk=produto_pk)
-        titulo = request.POST.get("titulo")
-        texto = request.POST.get("texto")
-        usuario = request.user
+        print(request.POST)
+        # produto = Produto.objects.get(pk=produto_pk)
+        # titulo = request.POST.get("titulo")
+        # texto = request.POST.get("texto")
+        # usuario = request.user
 
-        Comment.objects.create(usuario=usuario, produto=produto, titulo=titulo, texto=texto)
+        # Comment.objects.create(usuario=usuario, produto=produto, titulo=titulo, texto=texto, estrelas=estrelas)
 
         return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
     

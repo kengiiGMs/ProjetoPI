@@ -64,6 +64,7 @@
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
+                            <!-- <i class="bi bi-star"></i> -->
                         </div>
                         <div class="col">
                             <p>5.0 (280 Avaliações)</p>
@@ -122,18 +123,24 @@
                         </div>
                         <hr style="opacity: 10%;">
                         {% if user in compradores %}
-                            <form action="{% url 'comments' produto.pk %}" method="POST" style="width: 60%;">
+                            <form action="{% url 'comments' produto.pk %}" method="POST" style="width: 80%;">
                                 {% csrf_token %}
+                                <div class="py-2">
+                                    {% for estrela in estrelas %}
+                                        <input type="radio" class="btn-check" name="estrelas" id="tamanho-{{estrela}}" value="{{estrela}}" required>
+                                        <label class="btn" for="tamanho-{{estrela}}"><i class="bi bi-star"></i></label>
+                                    {% endfor %}
+                                </div>
                                 <div class="mb-4">
                                     <h6><strong>Escreva uma crítica</strong></h6>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label" style="font-size: 13px;">Título da revisão</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Título" name="titulo">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Título" name="titulo" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label" style="font-size: 13px;">Corpo da Avaliação</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="texto"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="texto" required></textarea>
                                 </div>
                                 <div>
                                     <button class="btn btn-danger px-4 py-2" type="submit" style="border-radius: 0%;">Enviar crítica</button>
@@ -141,6 +148,7 @@
                             </form>
                             <hr style="opacity: 10%;">
                         {% endif %}
+
                         {% for comment in comments %}
                             <div class="px-2 py-3" style="width: 50%;">
                                 <div class="row">
