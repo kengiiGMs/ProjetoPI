@@ -45,7 +45,7 @@
                                     {% if user.is_superuser or user.adm %}
                                         <form action="{% url 'deletar_produto' produto.pk %}" method="POST">
                                             {% csrf_token %}
-                                            <button type="submit" class="btn btn-outline-danger">Deletar</button>
+                                            <button type="submit" class="btn btn-outline-danger" style="border-radius: 0px;">Deletar</button>
                                         </form>
                                     {% endif %}
                                 </div>
@@ -58,16 +58,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-1-sm"> 
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <!-- <i class="bi bi-star"></i> -->
-                        </div>
-                        <div class="col">
-                            <p>5.0 (280 Avaliações)</p>
+                        <div class="col mb-3"> 
+                            <div style="display: flex; flex-wrap: nowrap; gap: 4px;">
+                                {% for star in produto.review_status.filled_stars %}
+                                    <i class="bi bi-star-fill" style="color: red;"></i>
+                                {% endfor %}
+
+                                {% for star in produto.review_status.unfilled_stars %}
+                                    <i class="bi bi-star" style="color: red;"></i>
+                                {% endfor %}
+                                <span style="padding-left: 10px;">{{produto.review_status.rating|floatformat:1}}</span>
+                            </div>
+                            <span style="font-size: 14px;">{{produto.review_status.total_reviews}} reviews</span>
                         </div>
                     </div>
                     <div class="row">
@@ -76,24 +78,24 @@
                     <div class="row">
                         <p>Tamanho</p>
                         <div class="container">
-                            <form action="{% url 'produto_page' produto.pk %}" method="post">
+                            <form action="{% url 'produto_page' produto.pk %}" method="post" id="buy-form">
                                 {% csrf_token %}
-                                <input type="radio" class="btn-check d-flex" name="tamanho" id="tamanho_p"
+                                <input type="radio" class="btn-check" name="tamanho" id="tamanho_p"
                                     autocomplete="off" value="P" checked>
-                                <label class="btn" for="tamanho_p">P</label>
+                                <label class="zaza btn btn-outline-danger" for="tamanho_p" style="">P</label>
 
                                 <input type="radio" class="btn-check" name="tamanho" id="tamanhoM"
                                     autocomplete="off" value="M">
-                                <label class="btn" for="tamanhoM">M</label>
+                                <label class="zaza btn btn-outline-danger" for="tamanhoM">M</label>
 
                                 <input type="radio" class="btn-check" name="tamanho" id="tamanho_g"
                                     autocomplete="off" value="G">
-                                <label class="btn" for="tamanho_g">G</label>
+                                <label class="zaza btn btn-outline-danger" for="tamanho_g">G</label>
 
                                 <input type="radio" class="btn-check" name="tamanho" id="tamanho_gg"
                                     autocomplete="off" value="GG">
-                                <label class="btn" for="tamanho_gg">GG</label>
-                                <div class="row mb-2">
+                                <label class="zaza btn btn-outline-danger" for="tamanho_gg">GG</label>
+                                <div class="row my-3">
                                     <div class="col">
                                         <label for="exampleInputQuantity" class="form-label">Quantidade</label>
                                         <input type="number" class="form-control d-flex" id="inputQuantity" min="1" name="quantidade" required>
@@ -123,15 +125,16 @@
                         </div>
                         <hr style="opacity: 10%;">
                         {% if user in compradores %}
-                            <form action="{% url 'comments' produto.pk %}" method="POST" style="width: 80%;">
+                            <form action="{% url 'comments' produto.pk %}" method="POST" style="width: 80%;" id="review-form">
                                 {% csrf_token %}
-                                <div class="py-2">
+                                <div class="py-2 stars">
                                     {% for estrela in estrelas %}
-                                        <input type="radio" class="btn-check" name="estrelas" id="tamanho-{{estrela}}" value="{{estrela}}" required>
-                                        <label class="btn" for="tamanho-{{estrela}}"><i class="bi bi-star"></i></label>
+                                        <i id="estrela-{{estrela}}" class="bi bi-star-fill" style="padding-left: 4px; color: red;"></i>
                                     {% endfor %}
+                                    <strong style="color: red; display: none;" id="mensagem-erro">Escolha uma avaliação</strong>
                                 </div>
-                                <div class="mb-4">
+                                <input type="hidden" id="starValue" name="starValue" value="" required>
+                                <div class="mb-4 mt-3">
                                     <h6><strong>Escreva uma crítica</strong></h6>
                                 </div>
                                 <div class="mb-3">
@@ -153,6 +156,16 @@
                             <div class="px-2 py-3" style="width: 50%;">
                                 <div class="row">
                                     <div class="col">
+                                        <div class="pb-2">
+                                            {% for estrela in comment.filled_stars %}
+                                                <i class="bi bi-star-fill" style="color: red;"></i>
+                                            {% endfor %}
+
+                                            {% for estrela in comment.unfilled_stars %}
+                                                <i class="bi bi-star" style="color: red;"></i>
+                                            {% endfor %}
+                                        </div>
+
                                         <p><strong>{{comment.titulo}}</strong></p>
                                     </div>
                                 </div>
@@ -168,10 +181,14 @@
                                 </div>
                                 <hr style="opacity: 15%;">
                             </div>
+                            {% empty %}
+                                <p>Este produto ainda não possui avaliações.</p>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="{% static 'ecommerce/script.js' %}"></script>
 {% endblock %}   

@@ -16,8 +16,13 @@
                                 <img src="{{produto.img_url}}" class="card-img-top" alt="...">
                             {% endif %}
                             <div class="card-body">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                {% for star in produto.review_status.filled_stars %}
+                                    <i class="bi bi-star-fill"></i>
+                                {% endfor %}
+
+                                {% for star in produto.review_status.unfilled_stars %}
+                                    <i class="bi bi-star"></i>
+                                {% endfor %}
                                 <h5 class="card-title">{{produto.nome_produto|truncatechars:17}}</h5>
                                 <br>
                                 <p class="card-text">R$ {{produto.valor_produto}}</p>

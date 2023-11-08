@@ -6,8 +6,30 @@ from django.db import IntegrityError
 from django.shortcuts import render
 from django.urls import reverse
 
-def set_shipping(post):
-    pass
+def set_shipping(post, pedido, user):
+    rua = post.get("rua")
+    numero = post.get("numero")
+    bairro = post.get("bairro")
+    complemento = post.get("complemento", "")
+    cidade = post.get("cidade")
+    cep = post.get("cep")
+    estado = post.get("estado")
+
+    e = Endereco.objects.create(
+        rua=rua,
+        numero=numero, 
+        cep=cep, 
+        bairro=bairro, 
+        cidade=cidade, 
+        estado=estado, 
+        complemento=complemento, 
+        pedido=pedido
+    )
+
+    if bool(post.get("lembrar_endereco")):
+        e.usuario = user
+    
+    e.save()
 
 # Create your views here.
 
@@ -213,13 +235,19 @@ def cupom(request, pedido_pk):
 @login_required(login_url="/login")
 def comments(request, produto_pk):
     if request.method == "POST":
-        print(request.POST)
-        # produto = Produto.objects.get(pk=produto_pk)
-        # titulo = request.POST.get("titulo")
-        # texto = request.POST.get("texto")
-        # usuario = request.user
-
-        # Comment.objects.create(usuario=usuario, produto=produto, titulo=titulo, texto=texto, estrelas=estrelas)
+        produto = Produto.objects.get(pk=produto_pk)
+        titulo = request.POST.get("titulo")
+        texto = request.POST.get("texto")
+        estrelas = request.POST.get("starValue")
+        usuario = request.user
+        5
+        Comment.objects.create(
+            usuario=usuario,
+            produto=produto,
+            titulo=titulo,
+            texto=texto,
+            estrelas=int(estrelas)
+        )
 
         return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
     
@@ -228,12 +256,14 @@ def comments(request, produto_pk):
 @login_required(login_url="/login")
 def checkout(request):
     if request.method == "POST":
+        print(request.POST)
         pedido = Pedido.objects.get(usuario=request.user, complete=False)
         pedido.complete = True
         for item in pedido.items.all():
             produto = item.produto
             produto.compradores.add(request.user)
             
+        set_shipping(request.POST, pedido, request.user)
         produto.save()
         pedido.save()
         

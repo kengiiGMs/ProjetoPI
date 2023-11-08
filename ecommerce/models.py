@@ -26,6 +26,27 @@ class Produto(models.Model):
     def __str__(self):
         return self.nome_produto
     
+
+    @property
+    def review_status(self):
+        reviews = self.comentarios.all()
+
+        # status
+        total_reviews = len(reviews)
+        try:
+            rating = sum([review.estrelas for review in reviews]) // total_reviews
+        except ZeroDivisionError:
+            rating = 0
+        filled_stars = range(1, rating+1)
+        unfilled_stars = range(rating+1, 6)
+
+        return {
+            "total_reviews": total_reviews,
+            "rating": rating,
+            "filled_stars": filled_stars,
+            "unfilled_stars": unfilled_stars,
+        }
+    
 class Comment(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=True, related_name="comentarios_feitos")
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, blank=False, null=True, related_name="comentarios")
@@ -34,8 +55,23 @@ class Comment(models.Model):
     data_comentario = models.DateTimeField(auto_now_add=True)
     estrelas = models.IntegerField(blank=False, null=True)
 
+
+    @property
+    def filled_stars(self):
+        estrelas = range(1, self.estrelas+1)
+
+        return estrelas
+    
+    @property
+    def unfilled_stars(self):
+        estrelas = range(self.estrelas+1, 6)
+
+        return estrelas
+
+
     def __str__(self):
         return f"{self.usuario} | {self.produto} = {self.texto}"
+    
 
 class Categoria(models.Model):
     produto = models.ManyToManyField(Produto, related_name="categorias")
@@ -99,13 +135,15 @@ class ItemPedido(models.Model):
     
 class Endereco(models.Model):
     numero = models.IntegerField()
-    cep = models.CharField(max_length=8)
-    bairro = models.CharField(max_length=255)
-    cidade = models.CharField(max_length=255)
-    estado = models.CharField(max_length=2)
-    complemento = models.CharField(max_length=255, blank=True)
-    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, blank=True, null=True)
+    cep = models.CharField(max_length=8, blank=False, null=True)
+    bairro = models.CharField(max_length=255, blank=False, null=True)
+    rua = models.CharField(max_length=255, blank=False, null=True)
+    cidade = models.CharField(max_length=255, blank=False, null=True)
+    estado = models.CharField(max_length=2, blank=False, null=True)
+    complemento = models.CharField(max_length=255, null=True, blank=True)
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, blank=False, null=True, related_name="envio")
+    usuario = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name="endereco")
 
     def __str__(self):
-        return f"{self.bairro}, {self.numero}"
+        return f"{self.bairro}, {self.numero} | Pedido: {self.pedido.pk}"
     

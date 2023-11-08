@@ -20,26 +20,29 @@
 							<b>Informações de Envio:</b>
 						</div>
 						<div class="col-8">
-							<input type="text" class="form-control" id="logradouro" placeholder="Rua" name="rua" required>
+							<input type="text" class="form-control" id="logradouro" placeholder="Rua" name="rua" value="{{user.endereco.last.rua}}" required>
 						</div>
 						<div class="col-4">
-							<input type="number" min="0" class="form-control" id="numero" placeholder="Número" name="numero" required>
+							<input type="number" min="0" class="form-control" id="numero" placeholder="Número" name="numero" value="{{user.endereco.last.numero}}" required>
 						</div>
 						<div class="col-6">
-							<input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro" required>
+							<input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro" value="{{user.endereco.last.bairro}}" required>
 						</div>
 						<div class="col-6">
 							<input type="text" class="form-control" id="complemento" placeholder="Complemento (opcional)"
-								name="complemento">
+								name="complemento" value="{{user.endereco.last.complemento}}">
 						</div>
 						<div class="col-12">
-							<input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade" required>
+							<input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade" value="{{user.endereco.last.cidade}}" required>
 						</div>
 						<div class="col-md-4">
-							<input type="text" maxlength="8" class="form-control" id="cep" placeholder="CEP" name="cep" required autofocus>
+							<input type="text" maxlength="8" class="form-control" id="cep" placeholder="CEP" name="cep" value="{{user.endereco.last.cep}}" required autofocus>
 						</div>
 						<div class="col-md-4">
-							<select id="inputState" class="form-select" name="estado">
+							<select id="estado" class="form-select" name="estado">
+								{% if user.endereco.last.estado %}
+									<option value="{{user.endereco.last.estado}}" id="option-estado" selected>x</option>
+								{% endif %}
 								<option value="AC">Acre</option>
 								<option value="AL">Alagoas</option>
 								<option value="AP">Amapá</option>
@@ -76,6 +79,12 @@
 							</select>
 						</div>
 						<strong style="color: red; display: none;" id="mensagem-erro">CEP não encontrado</strong>
+						<div class="form-check mb-2 ms-2">
+							<input class="form-check-input" type="checkbox" value="True" id="flexCheckDefault" name="lembrar_endereco">
+							<label class="form-check-label" for="flexCheckDefault">
+							  Lembrar do seu endereço
+							</label>
+						</div>
 				</div>
 				<br>
 				<div class="container-fluid box-element">
@@ -150,9 +159,17 @@
 
 	<script>
 		const mensagemErro = document.querySelector("#mensagem-erro");
-		
+		const optionEstado = document.querySelector("#option-estado");
+		if (optionEstado){
+			// optionEstado.innerHTML = estados(optionEstado.value)
+			let estado = estados(optionEstado.value);
+			optionEstado.innerHTML = estado;
+		}
 		document.getElementById("cep").addEventListener('input', function() {
 			const cep = this.value
+
+			const estado = document.createElement("OPTION")
+			const estadoSelect = document.getElementById("estado")
 
 			if (cep.length == 8){
 				const url = `https://viacep.com.br/ws/${cep}/json/`;
@@ -169,6 +186,12 @@
 						document.getElementById('complemento').value = data.complemento;
 						document.getElementById('bairro').value = data.bairro;
 						document.getElementById('cidade').value = data.localidade;
+						estado.innerHTML = estados(data.uf)
+						estado.value = data.uf
+						estado.selected = true;
+						estadoSelect.appendChild(estado)
+
+
 					}
 				})
 				.catch(error => {
@@ -184,6 +207,95 @@
             document.getElementById('complemento').value = '';
             document.getElementById('bairro').value = '';
             document.getElementById('cidade').value = '';
+		}
+
+		function estados(sigla){
+			switch (sigla) {
+				case 'AC':
+            		return 'Acre';
+            		break;
+				case 'AL':
+					return 'Alagoas';
+					break;
+				case 'AP':
+					return 'Amapá';
+					break;
+				case 'AM':
+					return 'Amazonas';
+					break;
+				case 'BA':
+					return 'Bahia';
+					break;
+				case 'CE':
+					return 'Ceará';
+					break;
+				case 'DF':
+					return 'Distrito Federal';
+					break;
+				case 'ES':
+					return 'Espírito Santo';
+					break;
+				case 'GO':
+					return 'Goiás';
+					break;
+				case 'MA':
+					return 'Maranhão';
+					break;
+				case 'MT':
+					return 'Mato Grosso';
+					break;
+				case 'MS':
+					return 'Mato Grosso do Sul';
+					break;
+				case 'MG':
+					return 'Minas Gerais';
+					break;
+				case 'PA':
+					return 'Pará';
+					break;
+				case 'PB':
+					return 'Paraíba';
+					break;
+				case 'PR':
+					return 'Paraná';
+					break;
+				case 'PE':
+					return 'Pernambuco';
+					break;
+				case 'PI':
+					return 'Piauí';
+					break;
+				case 'RJ':
+					return 'Rio de Janeiro';
+					break;
+				case 'RN':
+					return 'Rio Grande do Norte';
+					break;
+				case 'RS':
+					return 'Rio Grande do Sul';
+					break;
+				case 'RO':
+					return 'Rondônia';
+					break;
+				case 'RR':
+					return 'Roraima';
+					break;
+				case 'SC':
+					return 'Santa Catarina';
+					break;
+				case 'SP':
+					return 'São Paulo';
+					break;
+				case 'SE':
+					return 'Sergipe';
+					break;
+				case 'TO':
+					return 'Tocantins';
+					break;
+				default:
+					return 'Sigla não encontrada';
+					break;
+    		}
 		}
 
 	</script>
