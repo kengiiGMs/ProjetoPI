@@ -329,11 +329,10 @@ def register(request):
         confirmation = request.POST.get("confirmation")
 
         if password != confirmation:
-            return render(
-                request,
-                "ecommerce/register.html",
-                context={"message", "Passwords must match."},
-            )
+            return render(request, "ecommerce/register.html", context={
+                "message": "As senhas devem ser iguais.",
+            })
+           
         try:
             user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
             user.save()
