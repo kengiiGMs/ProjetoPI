@@ -72,27 +72,31 @@
                             <span style="font-size: 14px;">{{produto.review_status.total_reviews}} reviews</span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <h2>R$ {{produto.valor_produto}}</h2>
                     </div>
                     <div class="row">
                         <p>Tamanho</p>
+                        <span id="span_p"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_p}} produtos restantes</span>
+                        <span id="span_m"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_m}} produtos restantes</span>
+                        <span id="span_g"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_g}} produtos restantes</span>
+                        <span id="span_gg"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_gg}} produtos restantes</span>
                         <div class="container">
                             <form action="{% url 'produto_page' produto.pk %}" method="post" id="buy-form">
                                 {% csrf_token %}
-                                <input type="radio" class="btn-check" name="tamanho" id="tamanho_p"
+                                <input type="radio" class="btn-check tamanho-btn" name="tamanho" id="tamanho_p"
                                     autocomplete="off" value="P" checked>
-                                <label class="zaza btn btn-outline-danger" for="tamanho_p" style="">P</label>
+                                <label class="zaza btn btn-outline-danger" for="tamanho_p">P</label>
 
-                                <input type="radio" class="btn-check" name="tamanho" id="tamanhoM"
+                                <input type="radio" class="btn-check tamanho-btn" name="tamanho" id="tamanho_m"
                                     autocomplete="off" value="M">
-                                <label class="zaza btn btn-outline-danger" for="tamanhoM">M</label>
+                                <label class="zaza btn btn-outline-danger" for="tamanho_m">M</label>
 
-                                <input type="radio" class="btn-check" name="tamanho" id="tamanho_g"
+                                <input type="radio" class="btn-check tamanho-btn" name="tamanho" id="tamanho_g"
                                     autocomplete="off" value="G">
                                 <label class="zaza btn btn-outline-danger" for="tamanho_g">G</label>
 
-                                <input type="radio" class="btn-check" name="tamanho" id="tamanho_gg"
+                                <input type="radio" class="btn-check tamanho-btn" name="tamanho" id="tamanho_gg"
                                     autocomplete="off" value="GG">
                                 <label class="zaza btn btn-outline-danger" for="tamanho_gg">GG</label>
                                 <div class="row my-3">
