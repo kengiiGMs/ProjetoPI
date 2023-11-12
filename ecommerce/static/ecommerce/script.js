@@ -5,6 +5,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputQuantidade = document.querySelector("#inputQuantity");
 
     document.querySelectorAll(".tamanho-btn").forEach(btn => {
+        
+        if (btn.id === "tamanho_p" && produto.tamanhoP == 0) {
+            btn.disabled = true;
+            document.querySelector("#label_p").className = "disabled-btn btn btn-outline-danger";
+        } 
+        
+        else if (btn.id === "tamanho_m" && produto.tamanhoM == 0) {
+            btn.disabled = true;
+            document.querySelector("#label_m").className = "disabled-btn btn btn-outline-danger";
+        } 
+        
+        else if (btn.id === "tamanho_g" && produto.tamanhoG == 0) {
+            btn.disabled = true
+            document.querySelector("#label_g").style.cssText = "disabled-btn btn btn-outline-danger";
+        } 
+        
+        else if (btn.id === "tamanho_gg" && produto.tamanhoGG == 0) {
+            btn.disabled = true;
+            document.querySelector("#label_gg").style.cssText = "disabled-btn btn btn-outline-danger";
+        }
+
         btn.addEventListener("click", function(){
 
             switch (btn.id){

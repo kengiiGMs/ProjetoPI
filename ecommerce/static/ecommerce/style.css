@@ -650,3 +650,10 @@ a {
   padding: 3.5px 22px 3.5px 22px;
   border-radius: 0px;
 }
+
+#buy-form .disabled-btn{
+  padding: 3.5px 22px 3.5px 22px;
+  border-radius: 0px;
+  color: white;
+  background-color: rgb(128, 128, 128);
+}

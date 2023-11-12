@@ -76,14 +76,37 @@
 										<div style="width: 4%; margin: 0 auto;">
 											<form action="{% url 'carrinho_action' item.pk 'adicionar' %}" method="POST">
 												{% csrf_token %}
-												<input type="image" name="adicionar" class="chg-quantity update-cart" src="{% static 'ecommerce/Assets/arrow-up.png' %}">
+												<input type="image" id="add-produto" name="adicionar" class="chg-quantity update-cart" src="{% static 'ecommerce/Assets/arrow-up.png' %}" 
+													
+													{% if item.tamanho == 'P' %}
+														{% if item.quantidade >= item.produto.tamanho_p  %}
+															disabled
+														{% endif %}
+
+													{% elif item.tamanho == 'M' %}
+														{% if item.quantidade >= item.produto.tamanho_m  %}
+															disabled
+														{% endif %}
+
+													{% elif item.tamanho == 'G' %}
+														{% if item.quantidade >= item.produto.tamanho_g  %}
+															disabled
+														{% endif %}
+
+													{% elif item.tamanho == 'GG' %}
+														{% if item.quantidade >= item.produto.tamanho_gg  %}
+															disabled
+														{% endif %}
+													{% endif %}
+												>
+
 											</form>
 
 											<span style="padding-left: 1px;">{{item.quantidade}}</span>
 
 											<form action="{% url 'carrinho_action' item.pk 'remover' %}" method="POST">
 												{% csrf_token %}
-												<input type="image" name="remover" value="x" class="chg-quantity update-cart" src="{% static 'ecommerce/Assets/arrow-down.png' %}">
+												<input type="image" id="del-produto" name="remover" value="x" class="chg-quantity update-cart" src="{% static 'ecommerce/Assets/arrow-down.png' %}">
 											</form>
 											
 										</div>
@@ -97,4 +120,7 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		
+	</script>
 {% endblock %}

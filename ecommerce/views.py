@@ -256,17 +256,26 @@ def comments(request, produto_pk):
 @login_required(login_url="/login")
 def checkout(request):
     if request.method == "POST":
-        print(request.POST)
         pedido = Pedido.objects.get(usuario=request.user, complete=False)
         pedido.complete = True
         for item in pedido.items.all():
             produto = item.produto
+
+            # Código de merda, eu sei...
+            if item.tamanho == "P":
+                produto.tamanho_p -= item.quantidade
+            elif item.tamanho == "M":
+                produto.tamanho_m -= item.quantidade
+            elif item.tamanho == "G":
+                produto.tamanho_g -= item.quantidade
+            elif item.tamanho == "GG":
+                produto.tamanho_gg -= item.quantidade
+            
             produto.compradores.add(request.user)
+            produto.save()
             
         set_shipping(request.POST, pedido, request.user)
-        produto.save()
         pedido.save()
-        
         return HttpResponseRedirect(reverse("checkout"))
 
     if request.user.is_authenticated:
