@@ -4,6 +4,18 @@
 {% block title %}A Toca Dos Animes{% endblock %}
 
 {% block body %}
+
+    <script>
+            
+        var produto = {
+            tamanhoP: "{{produto.tamanho_p}}",
+            tamanhoM: "{{produto.tamanho_m}}",
+            tamanhoG: "{{produto.tamanho_g}}",
+            tamanhoGG: "{{produto.tamanho_gg}}",
+        }
+        
+    </script>
+
     <div style="background-color: rgb(255, 240, 245);">
         <div class="container p-5" style="background-color: white;">
             <div class="row">
@@ -77,10 +89,9 @@
                     </div>
                     <div class="row">
                         <p>Tamanho</p>
-                        <span id="span_p"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_p}} produtos restantes</span>
-                        <span id="span_m"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_m}} produtos restantes</span>
-                        <span id="span_g"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_g}} produtos restantes</span>
-                        <span id="span_gg"  style="color: #F80000; margin-bottom: 9px; display: none;">{{produto.tamanho_gg}} produtos restantes</span>
+
+                        <span id="spanTamanho"  style="color: #F80000; margin-bottom: 9px;">Produtos Restantes: {{produto.tamanho_p}}</span>
+
                         <div class="container">
                             <form action="{% url 'produto_page' produto.pk %}" method="post" id="buy-form">
                                 {% csrf_token %}
@@ -102,7 +113,7 @@
                                 <div class="row my-3">
                                     <div class="col">
                                         <label for="exampleInputQuantity" class="form-label">Quantidade</label>
-                                        <input type="number" class="form-control d-flex" id="inputQuantity" min="1" name="quantidade" required>
+                                        <input type="number" class="form-control d-flex" id="inputQuantity" min="1" name="quantidade" max="{{produto.tamanho_p}}" required>
                                     </div>
                                 </div>
                                 <div class="row">

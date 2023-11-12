@@ -1,39 +1,33 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const pSpan = document.querySelector("#span_p")
-    const mSpan = document.querySelector("#span_m") 
-    const gSpan = document.querySelector("#span_g") 
-    const ggSpan = document.querySelector("#span_gg") 
+
+    // Mostar quantidade de produtos restante em um determinado tamanho.
+    const spanTamanho = document.querySelector("#spanTamanho");
+    const inputQuantidade = document.querySelector("#inputQuantity");
 
     document.querySelectorAll(".tamanho-btn").forEach(btn => {
         btn.addEventListener("click", function(){
 
             switch (btn.id){
                 case "tamanho_p":
-                    pSpan.style.display = "block";
-                    mSpan.style.display = "none";
-                    gSpan.style.display = "none";
-                    ggSpan.style.display = "none";
+                    spanTamanho.innerText = `Produtos Restantes: ${produto.tamanhoP}`;
+                    // Limitar a quantidade de produtos q o cliente pode comprar
+                    // à quantidade restante do produto de tal tamanho.
+                    inputQuantidade.max = produto.tamanhoP;
                     break;
 
                 case "tamanho_m":
-                    pSpan.style.display = "none";
-                    mSpan.style.display = "block";
-                    gSpan.style.display = "none";
-                    ggSpan.style.display = "none";
+                    spanTamanho.innerText = `Produtos Restantes: ${produto.tamanhoM}`;
+                    inputQuantidade.max = produto.tamanhoM;
                     break;
                 
                 case "tamanho_g":
-                    pSpan.style.display = "none";
-                    mSpan.style.display = "none";
-                    gSpan.style.display = "block";
-                    ggSpan.style.display = "none";
+                    spanTamanho.innerText = `Produtos Restantes: ${produto.tamanhoG}`;
+                    inputQuantidade.max = produto.tamanhoG;
                     break;
 
                 case "tamanho_gg":
-                    pSpan.style.display = "none";
-                    mSpan.style.display = "none";
-                    gSpan.style.display = "none";
-                    ggSpan.style.display = "block";
+                    spanTamanho.innerText = `Produtos Restantes: ${produto.tamanhoGG}`;
+                    inputQuantidade.max = produto.tamanhoGG;
                     break;
 
             }
@@ -41,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
 
+    // Review
     const mensagemErro = document.querySelector("#mensagem-erro");
     
     if (document.querySelector("#review-form")){
