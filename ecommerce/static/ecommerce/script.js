@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
         else if (btn.id === "tamanho_g" && produto.tamanhoG == 0) {
             btn.disabled = true
-            document.querySelector("#label_g").style.cssText = "disabled-btn btn btn-outline-danger";
+            document.querySelector("#label_g").className = "disabled-btn btn btn-outline-danger";
         } 
         
         else if (btn.id === "tamanho_gg" && produto.tamanhoGG == 0) {
             btn.disabled = true;
-            document.querySelector("#label_gg").style.cssText = "disabled-btn btn btn-outline-danger";
+            document.querySelector("#label_gg").className = "disabled-btn btn btn-outline-danger";
         }
 
         btn.addEventListener("click", function(){
