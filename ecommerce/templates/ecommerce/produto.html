@@ -57,7 +57,7 @@
                             <button id="editBtn" class="btn btn-outline-primary" style="border-radius: 0px;">Editar</button>
                             <form action="{% url 'editar_produto' produto.pk 'deletar' %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger" style="border-radius: 0px;">Deletar</button>
+                                <button id="deleteBtn" type="submit" class="btn btn-outline-danger" style="border-radius: 0px;">Deletar</button>
                             </form>
                         </div>
                         

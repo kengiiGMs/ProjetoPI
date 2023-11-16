@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelector("#editBtn").addEventListener("click", function(){
+        this.remove();
+        document.querySelector("#deleteBtn").remove()
+        
         let nomeProdutoElement = document.querySelector("#nomeProduto");
         let nomeProdutoText = nomeProdutoElement.innerText;
         nomeProdutoElement.remove()
