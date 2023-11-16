@@ -63,11 +63,14 @@
                 </div>
             </div>
         </div>
+    </div>
         <script>
             document.addEventListener("DOMContentLoaded", function(){
                 const firstNameElement = document.querySelector("#floatingName");
                 const lastNameElement = document.querySelector("#floatingLastName");
                 const emailElement = document.querySelector("#floatingEmail");
+                const passwordInput = document.querySelector("#floatingPassword");
+
 
                 if (sessionStorage.getItem("userData")) {
                     userData = JSON.parse(sessionStorage.getItem("userData"));
@@ -75,6 +78,7 @@
                     firstNameElement.value = userData.firstName;
                     lastNameElement.value = userData.lastName;
                     emailElement.value = userData.email;
+                    passwordInput.focus();
                 }
                 document.querySelector("#registerForm").onsubmit = function () {
                     let firstName = firstNameElement.value;
@@ -93,5 +97,4 @@
                 }
             })
         </script>
-    </div>
 {% endblock %}

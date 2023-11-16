@@ -4,45 +4,65 @@
 {% block title %}Login{% endblock %}
 
 {% block body %} 
-<div class="cont">
-    <div class="container containerLogin">
-        <div class="row login-background">
-            <div class="col-6">
-                <div class="container container1">
-                    <h1 class="center h1Login">Login</h1>
-                    {% if message %}
-                        <div style="color: #d12328;">{{ message }}</div>
-                    {% endif %}
+    <div class="cont">
+        <div class="container containerLogin">
+            <div class="row login-background">
+                <div class="col-6">
+                    <div class="container container1">
+                        <h1 class="center h1Login">Login</h1>
 
-                    <form action="{% url 'login' %}" method="post">
-                        {% csrf_token %}
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control input-login" id="floatingInput"
-                                placeholder="name@example.com" name="email">
-                            <label for="floatingInput">Digite o seu Email</label>
+                        {% if message %}
+                            <div style="color: #d12328; margin-bottom: 5px;"><strong>{{message}}</strong></div>
+                        {% endif %}
+
+                        <form action="{% url 'login' %}" method="post" id="loginForm">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control input-login" id="floatingInput"
+                                    placeholder="name@example.com" name="email">
+                                <label for="floatingInput">Digite o seu Email</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input type="password" class="form-control input-login" id="floatingPassword"
+                                    placeholder="Password" name="password">
+                                <label for="floatingPassword">Digite a sua Senha</label>
+                            </div>
+
+                            <div class="d-grid gap-2 button-login">
+                                <button type="submit" class="btn btn-danger">Entrar</button>
+                            </div>
+                        </form>
+
+                        <div class="container center containerEsqueciMinhaSenha">
+                            <a href="{% url 'register' %}" class="linkEsqueciMinhaSenha">Criar a Conta</a>
                         </div>
-
-                        <div class="form-floating">
-                            <input type="password" class="form-control input-login" id="floatingPassword"
-                                placeholder="Password" name="password">
-                            <label for="floatingPassword">Digite a sua Senha</label>
-                        </div>
-
-                        <div class="d-grid gap-2 button-login">
-                            <button type="submit" class="btn btn-danger">Entrar</button>
-                        </div>
-                    </form>
-
-                    <div class="container center containerEsqueciMinhaSenha">
-                        <a href="{% url 'register' %}" class="linkEsqueciMinhaSenha">Criar a Conta</a>
                     </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <img src="" alt="">
+                <div class="col">
+                    <img src="" alt="">
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+
+            const emailInput = document.querySelector("#floatingInput");
+            const passwordInput = document.querySelector("#floatingPassword");
+
+            if (sessionStorage.getItem("email")) {
+                let email = sessionStorage.getItem("email");
+                emailInput.value = email;
+                passwordInput.focus();
+            }
+
+            document.querySelector("#loginForm").onsubmit = function () {
+                let email = emailInput.value;
+                sessionStorage.setItem("email", email);
+            }
+        })
+    </script>
+
 {% endblock %}
