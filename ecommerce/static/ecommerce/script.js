@@ -1,5 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    document.querySelector("#editBtn").addEventListener("click", function(){
+        let nomeProdutoElement = document.querySelector("#nomeProduto");
+        let nomeProdutoText = nomeProdutoElement.innerText;
+        nomeProdutoElement.remove()
+
+        let valorProdutoElement = document.querySelector("#valorProduto");
+        let valorProdutoNumber = valorProdutoElement.innerText;
+        valorProdutoElement.remove()
+
+        // Input Nome Produto
+        let nomeProdutoInput = document.createElement("input");
+        nomeProdutoInput.setAttribute("type", "text");
+        nomeProdutoInput.name = "novo_nome";
+        nomeProdutoInput.className = "form-control border border-danger my-3";
+        nomeProdutoInput.required = true;
+        nomeProdutoInput.value = nomeProdutoText;
+
+        // Input Valor Produto
+        let valorProdutoInput = document.createElement("input");
+        valorProdutoInput.setAttribute("type", "number");
+        valorProdutoInput.name = "novo_valor";
+        valorProdutoInput.className = "form-control border border-danger mb-3";
+        valorProdutoInput.value = parseFloat(valorProdutoNumber);
+        valorProdutoInput.required = true;
+        valorProdutoInput.min = 0;
+        valorProdutoInput.step = .01;
+
+        let submitBtn = document.createElement("button")
+        submitBtn.setAttribute("type", "submit");
+        submitBtn.innerHTML = "Editar";
+        submitBtn.className = "btn btn-outline-danger";
+        submitBtn.style.borderRadius = "0px";
+
+        document.querySelector("#nomeProdutoDiv").append(nomeProdutoInput);
+        document.querySelector("#valorProdutoDiv").append(valorProdutoInput);
+        document.querySelector("#submitBtnDiv").append(submitBtn);
+    })
+
     // Mostar quantidade de produtos restante em um determinado tamanho.
     const spanTamanho = document.querySelector("#spanTamanho");
     const inputQuantidade = document.querySelector("#inputQuantity");

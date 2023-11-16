@@ -167,12 +167,23 @@ def produto_page(request, produto_pk):
     })
 
 @login_required(login_url="/login")
-def deletar_produto(request, produto_pk):
+def editar_produto(request, produto_pk, status):
     user = request.user
     if user.is_superuser or user.adm:
         if request.method == "POST":
             produto = Produto.objects.get(pk=produto_pk)
-            produto.delete()
+            if status == "deletar":
+                produto.delete()
+            elif status == "editar":
+                novo_nome = request.POST.get("novo_nome")
+                novo_valor = request.POST.get("novo_valor")
+
+                produto.nome_produto = novo_nome
+                produto.valor_produto = novo_valor
+
+                produto.save()
+
+                return HttpResponseRedirect(reverse("produto_page", args=(produto_pk, )))
 
     return HttpResponseRedirect(reverse("index"))
 
