@@ -182,6 +182,18 @@ def carrinho(request):
         cliente = request.user
         pedido, created = Pedido.objects.get_or_create(usuario=cliente, complete=False)
         carrinho = pedido.items.all()
+        for item in carrinho:
+            pi = ItemPedido.objects.get(pk=item.pk)
+            if (item.tamanho == "P") and (item.quantidade > item.produto.tamanho_p):
+                pi.quantidade = pi.produto.tamanho_p
+            elif (item.tamanho == "M") and (item.quantidade > item.produto.tamanho_m):
+                pi.quantidade = pi.produto.tamanho_m
+            elif (item.tamanho == "G") and (item.quantidade > item.produto.tamanho_g):
+                pi.quantidade = pi.produto.tamanho_g
+            elif (item.tamanho == "GG") and (item.quantidade > item.produto.tamanho_gg):
+                pi.quantidade = pi.produto.tamanho_gg
+            pi.save()
+            
     else:
         carrinho = []
         pedido = {"get_total_carrinho": 0, "get_total_items": 0}

@@ -99,7 +99,6 @@
 														{% endif %}
 													{% endif %}
 												>
-
 											</form>
 
 											<span style="padding-left: 1px;">{{item.quantidade}}</span>
@@ -120,7 +119,12 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		
-	</script>
+	<!-- <script>
+		if (!firstTimeOnPage){
+			firstTimeOnPage = true;
+			location.reload();
+		} else {
+			firstTimeOnPage = false
+		}
+	</script> -->
 {% endblock %}
