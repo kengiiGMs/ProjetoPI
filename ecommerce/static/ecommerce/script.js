@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    if (document.querySelector("#editrBtn")){
+    if (document.querySelector("#editBtn")){
         document.querySelector("#editBtn").addEventListener("click", function(){
             this.remove();
             document.querySelector("#deleteBtn").remove()

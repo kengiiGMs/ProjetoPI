@@ -17,9 +17,9 @@
                     <div class="container container1">
                         <h1 class="center h1Login">Register</h1>
                         {% if message %}
-                            <div style="color: #d12328;">{{message}}</div>
+                            <div style="color: #d12328; margin-bottom: 5px;"><strong>{{message}}</strong></div>
                         {% endif %}
-                        <form action="{% url 'register' %}" method="post" class="row g-2">
+                        <form action="{% url 'register' %}" method="post" class="row g-2" id="registerForm">
                             {% csrf_token %}
                             <div class="col-6">
                               <div class="form-floating mb-3">
@@ -30,14 +30,14 @@
                             </div>
                             <div class="col-6">
                               <div class="form-floating mb-3">
-                                <input type="text" class="form-control input-login" id="floatingName"
+                                <input type="text" class="form-control input-login" id="floatingLastName"
                                     placeholder="Primeiro Nome" name="last_name" required>
                                 <label for="floatingName">Sobrenome </label>
                               </div>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control input-login" id="floatingInput"
+                                <input type="email" class="form-control input-login" id="floatingEmail"
                                     placeholder="name@example.com" name="email" required>
                                 <label for="floatingInput">Digite o seu Email</label>
                             </div>
@@ -63,5 +63,35 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                const firstNameElement = document.querySelector("#floatingName");
+                const lastNameElement = document.querySelector("#floatingLastName");
+                const emailElement = document.querySelector("#floatingEmail");
+
+                if (sessionStorage.getItem("userData")) {
+                    userData = JSON.parse(sessionStorage.getItem("userData"));
+                    
+                    firstNameElement.value = userData.firstName;
+                    lastNameElement.value = userData.lastName;
+                    emailElement.value = userData.email;
+                }
+                document.querySelector("#registerForm").onsubmit = function () {
+                    let firstName = firstNameElement.value;
+                    let lastName = lastNameElement.value;
+                    let email = emailElement.value;
+
+                    let userData = {
+                        "firstName": firstName,
+                        "lastName": lastName,
+                        "email": email
+                    }
+
+                    userDataJson = JSON.stringify(userData);
+
+                    sessionStorage.setItem("userData", userDataJson);
+                }
+            })
+        </script>
     </div>
 {% endblock %}
