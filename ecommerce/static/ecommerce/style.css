@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&family=Roboto:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   --red-primary: #f80000;
@@ -6,7 +6,7 @@
 }
 
 * {
-  font-family: "Roboto";
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   padding-left: 0;
@@ -37,6 +37,10 @@
   align-items: center;
   box-shadow: 0px 10px 3px #d9d9d9;
   font-weight: 400;
+}
+
+.navbar-brand{
+  max-width: 15%;
 }
 
 
@@ -83,10 +87,11 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .iconsLinks {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
   gap: 10%;
+  font-size: .9rem;
 }
 
 .iconsLinks a {
@@ -117,7 +122,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .login {
-    width: 120px;
+    width: 115px;
     height: 45px;
     background-color: transparent;
     border: 2px solid white;
@@ -126,6 +131,7 @@ input[type="search"]::-webkit-search-results-decoration {
     color: white;
     font-size: 20px;
     text-decoration: none;
+    font-weight: 700;
 }
 
 .login:hover {
@@ -291,8 +297,9 @@ footer .redeSocial{
 }
 
 footer .redeSocial h4{
-  font-weight: 900;
+  font-weight: 800;
   margin: 0 0 0 10px;
+  font-size: 1.35rem;
 }
 
 footer img{
@@ -318,111 +325,6 @@ footer img:hover{
   gap: 20px;
   text-align: left;
 }
-
-@media screen and (max-width: 1200px) {
-  
-  .categories .col-2{
-    height: 10vw;
-  }
-
-  .categoriesLogo:hover{
-    padding: 0;
-  }
-
-  .jkLogo{
-    width: 15vw;
-    height: 65%;
-  }
-
-  .nrtLogo{
-    width: 12vw;
-    height: 65%;
-  }
-
-  .opLogo{
-    width: 7.5vw;
-    height: 65%;
-  }
-
-  .aotLogo{
-    width: 5vw;
-    height: 65%;
-  }
-
-  footer{
-    height: 100%;
-    border-radius: 0%;
-  }
-
-  footer .redeSocial{
-    width: 100%;
-    margin: 0;
-    display: block;
-    text-align: center;
-  }
-
-  footer a {
-    text-decoration: none !important;
-  }
-
-  .cardsProduct .row{
-    overflow: unset;
-    display: flex;
-    flex-direction: column;
-    max-height: unset;
-  }
-
-  .cardProduct{
-    width: 100%;
-  }
-
-  .shirt{
-    width: 50% !important;
-  }
-
-  .login{
-    margin: 10px;
-  }
-
-  .inputSearch{
-    margin: 10px;
-  }
-
-  .navbar-toggler{
-    margin: 5%;
-  }
-
-  .footerInfo{
-    flex-direction: column;
-    align-content: center;
-  }
-
-  .footer-item{
-    margin-bottom: 2%;
-    width: 100% !important;
-    max-height: unset;
-  }
-
-  .footerInfo a {
-    display: block;
-    text-align: center;
-  }
-
-  .logo{
-    margin-right: 80px;
-  }
-
-  footer{
-    padding-bottom: 0;
-  }
-
-  .navbar-toggler{
-    display: block;
-  }
-}
-
-
-/* offCanvas Cart */
 
 /* card shirt */
 
@@ -475,7 +377,18 @@ footer img:hover{
   justify-content: center;
 }
 
+.price{
+  background-color: #ffd2d2;
+  padding: 3%;
+  border-radius: 5px;
+  color: #000;
+  font-weight: 600;
+}
 
+.card-title{
+  font-weight: 600;
+  color: #000 !important;
+}
 
 /* Auth */
 
@@ -520,7 +433,6 @@ a {
   background-color: rgb(255, 240, 245);
 }
 
-
 .h1Login {
   /* margin-top: 60px; */
   margin-bottom: 60px;
@@ -535,8 +447,7 @@ a {
   border-color: var(--red-primary);
 }
 
-
-  /* Search Bar */
+/* Search Bar */
 
 .search-bar .row{
   display: flex;
@@ -560,6 +471,62 @@ a {
 
 .products-page .row .col{
   margin-bottom: 30px;
+}
+
+.btn-product{
+  width: 35%;
+  padding: 2% !important;
+}
+
+.btn-cart{
+  color: #dc3545 !important;
+  background: #ffc5ca !important;
+  border: #ffc5ca !important;
+  font-weight: 500 !important;
+}
+
+.flex-center{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.qnt-div{
+  display: inline-flex !important;
+  margin: 0 3% !important;
+}
+
+.custom-num{
+  display: flex;
+  border: 1px #dc3545 solid;
+  border-radius: 3em;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.num-input::-webkit-outer-spin-button, .num-input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.num-input{
+  text-align: center;
+  background: none;
+  border: none !important;
+  font-weight: bold !important;
+  color: #dc3545 !important;
+}
+
+.num-input:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-num i{
+  cursor: pointer;
 }
 
 /* Cart */
@@ -656,4 +623,133 @@ a {
   border-radius: 0px;
   color: white;
   background-color: rgb(79, 80, 80);
+}
+
+@media screen and (max-width: 1200px) {
+  
+  .categories .col-2{
+    height: 10vw;
+  }
+
+  .categoriesLogo:hover{
+    padding: 0;
+  }
+
+  .jkLogo{
+    width: 15vw;
+    height: 65%;
+  }
+
+  .nrtLogo{
+    width: 12vw;
+    height: 65%;
+  }
+
+  .opLogo{
+    width: 7.5vw;
+    height: 65%;
+  }
+
+  .aotLogo{
+    width: 5vw;
+    height: 65%;
+  }
+
+  footer{
+    height: 100%;
+    border-radius: 0%;
+  }
+
+  footer .redeSocial{
+    width: 100%;
+    margin: 0;
+    display: block;
+    text-align: center;
+  }
+
+  footer a {
+    text-decoration: none !important;
+  }
+
+  .cardsProduct .row{
+    overflow: unset;
+    display: flex;
+    flex-direction: column;
+    max-height: unset;
+  }
+
+  .cardProduct{
+    width: 100%;
+  }
+
+  .shirt{
+    width: 50% !important;
+  }
+
+  .login{
+    margin: 10px;
+  }
+
+  .inputSearch{
+    margin: 10px;
+  }
+
+  .navbar-toggler{
+    margin: 5%;
+  }
+
+  .iconsLinks{
+    gap: 5%;
+  }
+
+  .footerInfo{
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .footer-item{
+    margin-bottom: 2%;
+    width: 100% !important;
+    max-height: unset;
+  }
+
+  .footerInfo a {
+    display: block;
+    text-align: center;
+  }
+
+  .logo{
+    margin-right: 80px;
+  }
+
+  footer{
+    padding-bottom: 0;
+  }
+
+  .navbar-toggler{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .product-row{
+    display: block !important;
+    text-align: center;
+  }
+
+  .product-stars{
+    justify-content: center;
+  }
+
+  #valorProdutoDiv{
+    display: block !important;
+  }
+
+  .qnt-div{
+    margin: 10% !important;
+  }
+
+  .btn-product{
+    width: 50%;
+  }
 }

@@ -18,7 +18,7 @@
 
     <div style="background-color: rgb(255, 240, 245);">
         <div class="container p-5" style="background-color: white;">
-            <div class="row">
+            <div class="row product-row">
                 <div class="col-sm">
                     <div id="productCarousel" class="carousel slide">
                         <div class="carousel-inner">
@@ -72,7 +72,7 @@
 
                         <div class="row">
                             <div class="col mb-3"> 
-                                <div style="display: flex; flex-wrap: nowrap; gap: 4px;">
+                                <div class="product-stars" style="display: flex; flex-wrap: nowrap; gap: 4px;">
                                     {% for star in produto.review_status.filled_stars %}
                                         <i class="bi bi-star-fill" style="color: red;"></i>
                                     {% endfor %}
@@ -96,11 +96,11 @@
                         </div>
                     </form>
                     <div class="row">
-                        <p>Tamanho</p>
 
-                        <span id="spanTamanho"  style="color: #F80000; margin-bottom: 9px;">Produtos Restantes: {{produto.tamanho_p}}</span>
-
+                        <div style="margin-bottom: 2%;">Tamanho e Quantidade</div>
+                        
                         <div class="container">
+
                             <form action="{% url 'produto_page' produto.pk %}" method="post" id="buy-form">
                                 {% csrf_token %}
                                 <input type="radio" class="btn-check tamanho-btn" name="tamanho" id="tamanho_p"
@@ -118,22 +118,30 @@
                                 <input type="radio" class="btn-check tamanho-btn" name="tamanho" id="tamanho_gg"
                                     autocomplete="off" value="GG">
                                 <label class="zaza btn btn-outline-danger" for="tamanho_gg" id="label_gg">GG</label>
-                                <div class="row my-3">
-                                    <div class="col">
-                                        <label for="exampleInputQuantity" class="form-label">Quantidade</label>
-                                        <input type="number" class="form-control d-flex" id="inputQuantity" min="1" name="quantidade" max="{{produto.tamanho_p}}" required>
+
+                                <!-- <label for="exampleInputQuantity" class="form-label">Quantidade</label> -->
+                                <div class="row qnt-div">
+                                    <div class="custom-num">
+                                        <i class="fa-solid fa-angle-left" style="color: #000000;"></i>
+                                        <input type="number" class="form-control d-flex num-input" id="inputQuantity" min="1" name="quantidade" max="{{produto.tamanho_p}}" value="1" required>
+                                        <i class="fa-solid fa-angle-right" style="color: #000000;"></i>
                                     </div>
                                 </div>
+                                
+                                <span id="spanTamanho" style="color: #F80000; margin-top: 2%; display: block;">Produtos Restantes: {{produto.tamanho_p}}</span>
+
+                                <div class="row" style="margin-top: 10%;">
+                                    <div class="col flex-center gap-2 mb-2">
+                                        <button class="btn btn-danger btn-product" type="submit" name="finalizar" value="True">Finalizar Compra</button>
+                                    </div>
+                                </div>
+
                                 <div class="row">
-                                    <div class="col d-grid gap-2 mb-2">
-                                        <button class="btn btn-danger" type="submit" name="carrinho" value="xd">Adicionar ao Carrinho</button>
+                                    <div class="col flex-center gap-2">
+                                        <button class="btn btn-danger btn-cart btn-product" type="submit" name="carrinho" value="xd">Adicionar ao Carrinho</button>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col d-grid gap-2">
-                                        <button class="btn btn-danger" type="submit" name="finalizar" value="True">Finalizar Compra</button>
-                                    </div>
-                                </div>
+
                             </form>
                         </div>
                     </div>
@@ -214,4 +222,5 @@
     </div>
 
     <script src="{% static 'ecommerce/script.js' %}"></script>
+    <script src="{% static 'ecommerce/input.js' %}"></script>
 {% endblock %}   
