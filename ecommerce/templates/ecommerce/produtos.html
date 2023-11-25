@@ -6,6 +6,16 @@
 {% block body %}
     <div class="container-fluid cardsProduct">
         <div class="row" style="gap: 20px; padding: 30px;">
+            <div class="select-container">
+                <div class="dropdown">
+                    <button class="dropbtn">Categorias</button>
+                    <div class="dropdown-content">
+                    <a href="#">Naruto</a>
+                    <a href="#">Jujutsu Kaisen</a>
+                    <a href="#">Fullmetal Alchemist Brotherhood</a>
+                    </div>
+                  </div>
+            </div>
             {% for produto in produtos %}
                 <div class="col-2 shirt">
                     <a href="{% url 'produto_page' produto.pk %}" style="color: inherit; text-decoration: none;">
