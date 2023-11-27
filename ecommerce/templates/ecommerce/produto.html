@@ -101,7 +101,7 @@
                         
                         <div class="container">
 
-                            <form action="{% url 'produto_page' produto.pk %}" method="post" id="buy-form">
+                            11<form action="{% url 'produto_page' produto.pk %}" method="post" id="buy-form">
                                 {% csrf_token %}
                                 <input type="radio" class="btn-check tamanho-btn" name="tamanho" id="tamanho_p"
                                     autocomplete="off" value="P" checked>
@@ -131,17 +131,20 @@
                                 <span id="spanTamanho" style="color: #F80000; margin-top: 2%; display: block;">Produtos Restantes: {{produto.tamanho_p}}</span>
 
                                 <div class="row" style="margin-top: 10%;">
-                                    <div class="col d-grid gap-2 col-12 mx-auto mb-2">
-                                        <button class="btn btn-danger btn-product" type="submit" name="finalizar" value="True">Finalizar Compra</button>
+                                    <div class="col">
+                                        <div class="text-center mb-2">
+                                            <button class="btn btn-danger btn-product" type="submit" name="finalizar" value="True">Finalizar Compra</button>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col d-grid gap-2 col-12 mx-auto">
-                                        <button class="btn btn-danger btn-cart btn-product" type="submit" name="carrinho" value="xd">Adicionar ao Carrinho</button>
+                                    <div class="col-12">
+                                        <div class="text-center mb-2">
+                                            <button class="btn btn-danger btn-cart btn-product" type="submit" name="carrinho" value="xd">Adicionar ao Carrinho</button>
+                                        </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
