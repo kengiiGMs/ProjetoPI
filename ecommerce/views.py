@@ -72,6 +72,7 @@ def produtos(request, category_name):
 
     return render(request, "ecommerce/produtos.html", context={
         "produtos": produtos,
+        "categorias": Categoria.objects.all(),
     })
 
 
